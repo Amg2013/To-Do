@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spincircle_bottom_bar/modals.dart';
 import 'package:spincircle_bottom_bar/spincircle_bottom_bar.dart';
 import 'package:tasks/presiention/screens/skitch.dart';
@@ -16,6 +17,15 @@ class HomeList1 extends StatefulWidget {
 }
 
 class _HomeList1State extends State<HomeList1> {
+  final SharedPreferences pref =
+      SharedPreferences.getInstance() as SharedPreferences;
+
+  void save() async {
+    pref.setString('sdf', "sdf");
+  }
+
+  getTask() {}
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
