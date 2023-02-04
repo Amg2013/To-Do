@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:tasks/logic/bloc_theme/theme_bloc.dart';
-import 'package:tasks/presiention/screens/splash.dart';
+import 'package:tasks/UI/screens/splash.dart';
 
 void main() {
   runApp(const MyApp());
