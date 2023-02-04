@@ -1,12 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutable
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutable, file_names
 
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spincircle_bottom_bar/modals.dart';
 import 'package:spincircle_bottom_bar/spincircle_bottom_bar.dart';
-import 'package:tasks/presiention/screens/skitch.dart';
-import '../../utils/valuse.dart';
-import '../widgts/body.dart';
+import 'package:tasks/UI/screens/skitch.dart';
+import '../../logic/bloc/switch_bloc.dart';
+import '../widgets/body.dart';
 
 class HomeList1 extends StatefulWidget {
   const HomeList1({super.key});
@@ -16,6 +16,7 @@ class HomeList1 extends StatefulWidget {
 }
 
 class _HomeList1State extends State<HomeList1> {
+  bool? switchValue;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,8 +26,38 @@ class _HomeList1State extends State<HomeList1> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                // theme
+                BlocBuilder<SwitchBloc, SwitchState>(
+                  builder: (context, state) {
+                    return Switch(
+                      value: state.switchValue,
+                      onChanged: (newValue) {
+                        newValue
+                            ? context.read<SwitchBloc>().add(Onevent())
+                            : context.read<SwitchBloc>().add(Offevent());
+                      },
+                    );
+                  },
+                ),
+                // BlocBuilder<SwitchBloc, SwitchState>(
+                // builder: (context, state) {
+                //   return IconButton(
+                //       icon: Icon(
+                //         Icons.dark_mode_outlined,
+                //         color: Colors.black12,
+                //       ),
+                //       onPressed: () {
+                //         setState(() {
+                //           switchValue = true;
+                //         });
+                //       });
+                // },
+                // ),
                 IconButton(
-                    onPressed: null, icon: Icon(Icons.pivot_table_chart)),
+                    onPressed: null,
+                    icon: Icon(
+                      Icons.pivot_table_chart,
+                    )),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 50),
                   child: Text('My Tasks',
@@ -40,8 +71,13 @@ class _HomeList1State extends State<HomeList1> {
             ),
           )
         ]),
+        // this is the end of appBar
+        // affter that i will implment the naveBar but it take the body
+        // of scaffold and it's child is my list
+
         body: SpinCircleBottomBarHolder(
           bottomNavigationBar: SCBottomBarDetails(
+              // this for the big button
               actionButtonDetails: SCActionButtonDetails(
                   color: Colors.black,
                   icon: Icon(
@@ -49,16 +85,7 @@ class _HomeList1State extends State<HomeList1> {
                     size: 40,
                   ),
                   elevation: 0),
-              items: [
-                SCBottomBarItem(
-                    icon: Icons.home_outlined,
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => Skitch()));
-                    }),
-                SCBottomBarItem(
-                    icon: Icons.dark_mode_outlined, onPressed: () {}),
-              ],
+              // this this the Icons of the Big Icon
               circleItems: [
                 SCItem(
                     icon: Icon(Icons.add_alert_outlined),
@@ -69,6 +96,22 @@ class _HomeList1State extends State<HomeList1> {
                     icon: Icon(Icons.add),
                     onPressed: () {
                       ShowBottomSheet(context);
+                    }),
+              ],
+              // icons of the bar
+              items: [
+                SCBottomBarItem(
+                    icon: Icons.home_outlined,
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => Skitch()));
+                    }),
+                SCBottomBarItem(
+                    icon: Icons.dark_mode_outlined,
+                    onPressed: (newValue) {
+                      setState(() {
+                        switchValue = newValue;
+                      });
                     }),
               ],
               circleColors: [
@@ -83,15 +126,17 @@ class _HomeList1State extends State<HomeList1> {
   }
 
   // ignore: non_constant_identifier_names
+  // this method if for bottom sheet adding task
   Future<dynamic> ShowBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
       builder: (context) {
         return Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
             height: 350,
             decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.only(
-                topStart: Radius.circular(90),
+                topStart: Radius.circular(100),
                 topEnd: Radius.circular(90),
               ),
             ),

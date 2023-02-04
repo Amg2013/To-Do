@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'package:tasks/presiention/screens/HomeList.dart';
+import 'package:tasks/UI/screens/HomeList.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -84,27 +84,25 @@ class _SplashState extends State<Splash> {
                           )
                         ],
                       )), // texts
-                  Positioned(
-                    bottom: 20,
-                    left: 300,
-                    child: ElevatedButton(
-                      onPressed: null,
-                      child: Image.asset('assets/images/Vector.png'),
-                    ),
-                    // SwipeableButtonView(
-                    //     onFinish: onFinish,
-                    //     isFinished: isfinshed,
-                    //     onWaitingProcess: onWaitingProcess,
-                    //     activeColor: C_Coloers.light_back,
-                    //     buttonWidget: const Icon(
-                    //       Icons.arrow_forward_ios,
-                    //       color: Color.fromARGB(255, 233, 240, 245),
-                    //     ),
-                    //     buttonText: 'Swip to start'),
-                  ),
+                  // SwipeableButtonView(
+                  //     onFinish: onFinish,
+                  //     isFinished: isfinshed,
+                  //     onWaitingProcess: onWaitingProcess,
+                  //     activeColor: C_Coloers.light_back,
+                  //     buttonWidget: const Icon(
+                  //       Icons.arrow_forward_ios,
+                  //       color: Color.fromARGB(255, 233, 240, 245),
+                  //     ),
+                  //     buttonText: 'Swip to start'),
+                  //),
                 ])),
       ]),
-      // floatingActionButton:IconButton(onPressed: null , icon: Icon(Icon.Vector),) ,
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        elevation: 0,
+        backgroundColor: null,
+        child: Image.asset('assets/images/Vector.png'),
+      ),
     );
   }
 
