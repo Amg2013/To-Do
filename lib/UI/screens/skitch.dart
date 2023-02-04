@@ -14,12 +14,16 @@ class Skitch extends StatefulWidget {
 }
 
 class _SkitchState extends State<Skitch> {
-  final TaskData taskData =
-      TaskData(id: '1', title: 'stduy', content: 'stdy hard');
+  late final Task taskData = Task(
+      title: 'dfs',
+      description: ' dsf',
+      id: 'd1',
+      isDeleted: false,
+      isDone: false);
 
   save() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    pref.setString(taskData.title, taskData.content);
+    pref.setString(taskData.title, taskData.description);
   }
 
   String? TaskName;

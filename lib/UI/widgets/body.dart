@@ -5,9 +5,29 @@ import 'package:tasks/utils/valuse.dart';
 import '../../data/Task.dart';
 
 class BodyList extends StatelessWidget {
-  const BodyList({
+  BodyList({
     Key? key,
   }) : super(key: key);
+  List<Task> ListData = [
+    Task(
+        title: 'dfs',
+        description: ' dsf',
+        id: 'd1',
+        isDeleted: false,
+        isDone: false),
+    Task(
+        title: 'dfs',
+        description: ' dsf',
+        id: 'd1',
+        isDeleted: false,
+        isDone: false),
+    Task(
+        title: 'dfs',
+        description: ' dsf',
+        id: 'd1',
+        isDeleted: false,
+        isDone: false),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +45,7 @@ class BodyList extends StatelessWidget {
               shrinkWrap: true,
               itemCount: ListData.length,
               itemBuilder: (context, int index) {
-                return MyWidget('title', 'content');
+                return MyWidget('hifht ', 'content');
               },
             ),
           ],

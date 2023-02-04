@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spincircle_bottom_bar/modals.dart';
 import 'package:spincircle_bottom_bar/spincircle_bottom_bar.dart';
 import 'package:tasks/UI/screens/skitch.dart';
+import 'package:tasks/UI/widgets/Other_task_list.dart';
+import '../../data/Task.dart';
+import '../../logic/Bloc_export.dart';
 import '../../logic/bloc/switch_bloc.dart';
 import '../widgets/body.dart';
 
@@ -17,110 +20,120 @@ class HomeList1 extends StatefulWidget {
 
 class _HomeList1State extends State<HomeList1> {
   bool? switchValue;
+  TextEditingController txTilte = TextEditingController();
+  TextEditingController txDesc = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(elevation: 0, backgroundColor: Colors.white, actions: [
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                // theme
-                BlocBuilder<SwitchBloc, SwitchState>(
-                  builder: (context, state) {
-                    return Switch(
-                      value: state.switchValue,
-                      onChanged: (newValue) {
-                        newValue
-                            ? context.read<SwitchBloc>().add(Onevent())
-                            : context.read<SwitchBloc>().add(Offevent());
-                      },
-                    );
-                  },
-                ),
-                // BlocBuilder<SwitchBloc, SwitchState>(
-                // builder: (context, state) {
-                //   return IconButton(
-                //       icon: Icon(
-                //         Icons.dark_mode_outlined,
-                //         color: Colors.black12,
-                //       ),
-                //       onPressed: () {
-                //         setState(() {
-                //           switchValue = true;
-                //         });
-                //       });
-                // },
-                // ),
-                IconButton(
-                    onPressed: null,
-                    icon: Icon(
-                      Icons.pivot_table_chart,
-                    )),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 50),
-                  child: Text('My Tasks',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                      )),
-                ),
-                IconButton(onPressed: null, icon: const Icon(Icons.search))
-              ],
-            ),
-          )
-        ]),
-        // this is the end of appBar
-        // affter that i will implment the naveBar but it take the body
-        // of scaffold and it's child is my list
+      child: BlocBuilder<TasksBloc, TasksState>(
+        builder: (context, state) {
+          List<Task> tasksList = state.allTasks;
 
-        body: SpinCircleBottomBarHolder(
-          bottomNavigationBar: SCBottomBarDetails(
-              // this for the big button
-              actionButtonDetails: SCActionButtonDetails(
-                  color: Colors.black,
-                  icon: Icon(
-                    Icons.add,
-                    size: 40,
-                  ),
-                  elevation: 0),
-              // this this the Icons of the Big Icon
-              circleItems: [
-                SCItem(
-                    icon: Icon(Icons.add_alert_outlined),
-                    onPressed: () {
-                      ShowBottomSheet(context);
-                    }),
-                SCItem(
-                    icon: Icon(Icons.add),
-                    onPressed: () {
-                      ShowBottomSheet(context);
-                    }),
-              ],
-              // icons of the bar
-              items: [
-                SCBottomBarItem(
-                    icon: Icons.home_outlined,
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => Skitch()));
-                    }),
-                SCBottomBarItem(
-                    icon: Icons.dark_mode_outlined,
-                    onPressed: (newValue) {
-                      setState(() {
-                        switchValue = newValue;
-                      });
-                    }),
-              ],
-              circleColors: [
-                Colors.red,
-                Colors.blue,
-                Colors.amber
-              ]),
-          child: BodyList(),
-        ),
+          return Scaffold(
+            appBar:
+                AppBar(elevation: 0, backgroundColor: Colors.white, actions: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    // theme
+                    BlocBuilder<SwitchBloc, SwitchState>(
+                      builder: (context, state) {
+                        return Switch(
+                          value: state.switchValue,
+                          onChanged: (newValue) {
+                            newValue
+                                ? context.read<SwitchBloc>().add(Onevent())
+                                : context.read<SwitchBloc>().add(Offevent());
+                          },
+                        );
+                      },
+                    ),
+                    // BlocBuilder<SwitchBloc, SwitchState>(
+                    // builder: (context, state) {
+                    //   return IconButton(
+                    //       icon: Icon(
+                    //         Icons.dark_mode_outlined,
+                    //         color: Colors.black12,
+                    //       ),
+                    //       onPressed: () {
+                    //         setState(() {
+                    //           switchValue = true;
+                    //         });
+                    //       });
+                    // },
+                    // ),
+                    IconButton(
+                        onPressed: null,
+                        icon: Icon(
+                          Icons.pivot_table_chart,
+                        )),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 50),
+                      child: Text('My Tasks',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          )),
+                    ),
+                    IconButton(onPressed: null, icon: const Icon(Icons.search))
+                  ],
+                ),
+              )
+            ]),
+            // this is the end of appBar
+            // affter that i will implment the naveBar but it take the body
+            // of scaffold and it's child is my list
+
+            body: SpinCircleBottomBarHolder(
+              bottomNavigationBar: SCBottomBarDetails(
+                  // this for the big button
+                  actionButtonDetails: SCActionButtonDetails(
+                      color: Colors.black,
+                      icon: Icon(
+                        Icons.add,
+                        size: 40,
+                      ),
+                      elevation: 0),
+                  // this this the Icons of the Big Icon
+                  circleItems: [
+                    SCItem(
+                        icon: Icon(Icons.add_alert_outlined),
+                        onPressed: () {
+                          ShowBottomSheet(context);
+                        }),
+                    SCItem(
+                        icon: Icon(Icons.add),
+                        onPressed: () {
+                          ShowBottomSheet(context);
+                        }),
+                  ],
+                  // icons of the bar
+                  items: [
+                    SCBottomBarItem(
+                        icon: Icons.home_outlined,
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => Skitch()));
+                        }),
+                    SCBottomBarItem(
+                        icon: Icons.dark_mode_outlined,
+                        onPressed: (newValue) {
+                          setState(() {
+                            switchValue = newValue;
+                          });
+                        }),
+                  ],
+                  circleColors: [
+                    Colors.red,
+                    Colors.blue,
+                    Colors.amber
+                  ]),
+              child: BodyList(),
+            ),
+          );
+        },
       ),
     );
   }
@@ -147,16 +160,16 @@ class _HomeList1State extends State<HomeList1> {
                 textDirection: TextDirection.ltr,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const TextField(
-                    //controller: taskContlroller,
+                  TextField(
+                    controller: txTilte,
                     decoration: InputDecoration(
                         counterText: 'Todo title',
                         hintText: 'Todo title..... ',
                         border: OutlineInputBorder()),
                     textDirection: TextDirection.ltr,
                   ),
-                  const TextField(
-                    //controller: taskContlroller,
+                  TextField(
+                    controller: txDesc,
                     decoration: InputDecoration(
                         counterText: 'Todo title',
                         hintText: 'Todo title..... ',
@@ -164,6 +177,14 @@ class _HomeList1State extends State<HomeList1> {
                     textDirection: TextDirection.ltr,
                   ),
                   GestureDetector(
+                    onTap: () {
+                      var task1 = Task(
+                          title: txTilte.text,
+                          description: txDesc.text,
+                          id: txTilte.text);
+                      context.read<TasksBloc>().add(AddTask(task: task1));
+                      Navigator.pop(context);
+                    },
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(

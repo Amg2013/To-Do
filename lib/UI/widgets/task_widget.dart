@@ -18,10 +18,10 @@ Container MyWidget(String titel, String content) {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            icon: Icon(Icons.check_box_outlined),
+            icon: Icon(Icons.check_box_outline_blank_outlined),
             onPressed: () {},
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 1),
           Text(titel),
           SizedBox(width: 50),
           IconButton(
