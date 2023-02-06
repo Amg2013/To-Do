@@ -47,10 +47,10 @@ class _SkitchState extends State<Skitch> {
               const SizedBox(
                 height: 30,
               ),
-              TextButton(
-                onPressed: save,
-                child: MyWidget('tttttttttt', 'content'),
-              ),
+              // TextButton(
+              //   onPressed: save,
+              //   child: MyWidget1('tttttttttt', 'content', 'sd'),
+              // ),
               Row(
                 children: [
                   GridWidget('jkl;j', ' i wil go to playground'),

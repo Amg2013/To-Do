@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import 'package:tasks/UI/screens/HomeList.dart';
+import 'package:tasks/UI/screens/ListTasks.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -20,7 +21,7 @@ class _SplashState extends State<Splash> {
       const Duration(seconds: 1),
       () {
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) => HomeList1()));
+            MaterialPageRoute(builder: (BuildContext context) => HomeList()));
       },
     );
   }
@@ -110,7 +111,7 @@ class _SplashState extends State<Splash> {
     await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeList1(),
+          builder: (context) => HomeList(),
         ));
   }
 

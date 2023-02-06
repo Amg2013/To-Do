@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 part of 'tasks_bloc.dart';
 
 class TasksState extends Equatable {
@@ -20,12 +22,29 @@ class TasksState extends Equatable {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      //  'pendingTasks': pendingTasks.map((x) => x.toMap()).toList(),
-      'DeleteTasks': DeleteTasks.map((x) => x.toMap()).toList(),
-      'completedTasks': completedTasks.map((x) => x.toMap()).toList(),
-      //'favoriteTasks': pendingTasks.map((x) => x.toMap()).toList(),
       'allTasks': allTasks.map((x) => x.toMap()).toList(),
-      // 'removedTasks': pendingTasks.map((x) => x.toMap()).toList(),
+      'completedTasks': completedTasks.map((x) => x.toMap()).toList(),
+      'DeleteTasks': DeleteTasks.map((x) => x.toMap()).toList(),
     };
+  }
+
+  factory TasksState.fromMap(Map<String, dynamic> map) {
+    return TasksState(
+      allTasks: List<Task>.from(
+        (map['allTasks'] as List<int>).map<Task>(
+          (x) => Task.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      completedTasks: List<Task>.from(
+        (map['completedTasks'] as List<int>).map<Task>(
+          (x) => Task.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      DeleteTasks: List<Task>.from(
+        (map['DeleteTasks'] as List<int>).map<Task>(
+          (x) => Task.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+    );
   }
 }
