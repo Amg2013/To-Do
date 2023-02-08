@@ -1,30 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:tasks/UI/screens/splash.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks/UI/screens/ListTasks.dart';
 import 'package:tasks/data/Task.dart';
-import 'package:tasks/logic/bloc/switch_bloc.dart';
 import 'package:tasks/utils/AppTheme.dart';
 
 import 'logic/Bloc_export.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  final storage = await HydratedStorage.build(
-      storageDirectory: await getApplicationDocumentsDirectory());
-  storage:
-  storage;
-  BlocOverrides.runZoned(
-    () => runApp(MyApp()),
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: await getApplicationDocumentsDirectory(),
   );
-
-  // HydratedBlocOverrides.runZoned(
-  //   () => runApp(MyApp()),
-  // storage:storage;
-  // );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -59,12 +47,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-// BlocProvider(
-//       create: (context) => ThemeBloc(),
-//       child: MaterialApp(
-//         color: HexColor('#E5E5E5'),
-//         home: const Splash(),
-//         debugShowCheckedModeBanner: false,
-//       ),

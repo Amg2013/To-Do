@@ -47,4 +47,9 @@ class TasksState extends Equatable {
       ),
     );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory TasksState.fromJson(String source) =>
+      TasksState.fromMap(json.decode(source) as Map<String, dynamic>);
 }

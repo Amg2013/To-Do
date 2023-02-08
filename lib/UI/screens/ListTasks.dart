@@ -1,111 +1,70 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:tasks/UI/screens/Search.dart';
 import 'package:tasks/UI/widgets/body.dart';
 import 'package:tasks/data/Task.dart';
-
+import 'package:tasks/utils/AppTheme.dart';
 import '../../logic/Bloc_export.dart';
 import '../../utils/AppColors.dart';
+import '../widgets/NavBar.dart';
 
 class HomeList extends StatefulWidget {
-  HomeList({Key? key}) : super(key: key);
+  const HomeList({Key? key}) : super(key: key);
 
   @override
   State<HomeList> createState() => _HomeListState();
 }
 
 class _HomeListState extends State<HomeList> {
-  bool? switchValue = false;
+  bool? switchValue;
   bool? isSearch = false;
-  void Ischange() {
-    setState(() {
-      isSearch = true;
-    });
-  }
+  bool? isLight = true;
+  bool? isList = true;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.mainColor,
+        // backgroundColor: isLight == true
+        //     ? AppThemes.mainColor
+        //     : Color.fromARGB(31, 43, 39, 39),
         appBar: AppBar(
             elevation: 0,
-            backgroundColor: AppColors.mainColor,
+            // backgroundColor: isLight == true
+            //     ? AppThemes.mainColor
+            //     : AppThemes.bottomIconColor,
             actions: [
-              SizedBox(
-                child: isSearch == false
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          // theme
-                          BlocBuilder<SwitchBloc, SwitchState>(
-                            builder: (context, state) {
-                              return Switch(
-                                value: state.switchValue,
-                                onChanged: (newValue) {
-                                  newValue
-                                      ? context
-                                          .read<SwitchBloc>()
-                                          .add(Onevent())
-                                      : context
-                                          .read<SwitchBloc>()
-                                          .add(Offevent());
-                                },
-                              );
-                            },
-                          ),
-                          const SizedBox(width: 30),
-                          IconButton(
-                              onPressed: () => setState(() {
-                                    switchValue = true;
-                                  }),
-                              icon: Icon(
-                                Icons.pivot_table_chart,
-                              )),
-                          const SizedBox(width: 30),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 50),
-                            child: Text('My Tasks',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                )),
-                          ),
-                          const SizedBox(width: 20),
-                          IconButton(
-                              onPressed: () => setState(() {
-                                    isSearch = true;
-                                  }),
-                              icon: const Icon(Icons.search))
-                        ],
-                      )
-                    : Expanded(
-                        child: Row(
-                          children: [
-                            IconButton(
-                                onPressed: () => setState(() {
-                                      isSearch = false;
-                                    }),
-                                icon: Icon(Icons.cancel_outlined)),
-                            Container(
-                              height: 60,
-                              width: 380,
-                              margin: EdgeInsets.all(5),
-                              child: TextField(
-                                autofocus: false,
-                                decoration: InputDecoration(
-                                    labelText: 'search',
-                                    suffixIcon: Icon(Icons.search_sharp),
-                                    border: OutlineInputBorder()),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-              )
+              Expanded(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const SizedBox(width: 30),
+                  IconButton(
+                      onPressed: () => gridToList(isList!),
+                      icon: Icon(isList == false
+                          ? Icons.pivot_table_chart
+                          : Icons.grid_view_outlined)),
+                  SizedBox(width: 30),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 50),
+                    child: Text('My Tasks',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        )),
+                  ),
+                  const SizedBox(width: 20),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => const Search()));
+                      },
+                      icon: const Icon(Icons.search))
+                ],
+              ))
             ]),
-        body: BodyList(Value: switchValue),
+        body: BodyList(Value: isList),
         floatingActionButton: FloatingActionButton(
             shape: const CircleBorder(),
             backgroundColor: AppColors.floatingColor,
@@ -113,49 +72,30 @@ class _HomeListState extends State<HomeList> {
               Icons.add,
             ),
             onPressed: () {
-              ShowBottomSheet(context);
+              showBottomSheet(context);
             }),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BlocBuilder<SwitchBloc, SwitchState>(
-          builder: (context, state) {
-            return BottomNavigationBar(
-              backgroundColor: AppColors.bottomNavColor,
-              currentIndex: 0,
-              selectedItemColor: HexColor("#FF4444").withOpacity(0.7),
-              selectedLabelStyle:
-                  TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
-              unselectedItemColor: AppColors.bottomIconColor,
-              unselectedLabelStyle: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                  color: AppColors.bottomIconColor),
-              elevation: 0,
-              showSelectedLabels: false,
-              // var value = true ,
-              onTap: (value) => context.read<SwitchBloc>().add(Offevent()),
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home_outlined,
-                  ),
-                  label: "Home",
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.nightlight_outlined,
-                      size: 25,
-                    ),
-                    label: "theme"),
-              ],
-            );
-          },
-        ),
+        bottomNavigationBar: NavBar(isLight: isLight!),
       ),
     );
   }
+
+  void gridToList(bool falge) {
+    if (falge == true) {
+      BodyList(Value: isList);
+      setState(() {
+        isList = false;
+      });
+    } else {
+      BodyList(Value: false);
+      setState(() {
+        isList = true;
+      });
+    }
+  }
 }
 
-Future<dynamic> ShowBottomSheet(BuildContext context) {
+Future<dynamic> showBottomSheet(BuildContext context) {
   TextEditingController txTilte = TextEditingController();
   TextEditingController txDesc = TextEditingController();
   return showModalBottomSheet(

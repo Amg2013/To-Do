@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:tasks/data/Task.dart';
-
 import '../../logic/Bloc_export.dart';
 
 class Grid_widget extends StatelessWidget {
