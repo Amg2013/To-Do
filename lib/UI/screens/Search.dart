@@ -25,7 +25,11 @@ class _SearchState extends State<Search> {
       appBar: AppBar(elevation: 0, flexibleSpace: Row(), actions: [
         Row(
           children: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.cancel_outlined)),
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.cancel_outlined)),
             Container(
               height: 60,
               width: 380,

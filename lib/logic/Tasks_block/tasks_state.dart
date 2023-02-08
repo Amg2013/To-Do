@@ -19,8 +19,8 @@ class TasksState extends Equatable {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'allTasks': allTasks.map((x) => x.toMap()).toList(),
-      // 'completedTasks': completedTasks.map((x) => x.toMap()).toList(),
-      // 'DeleteTasks': deleteTasks.map((x) => x.toMap()).toList(),
+      'completedTasks': completedTasks.map((x) => x.toMap()).toList(),
+      'DeleteTasks': deleteTasks.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -31,16 +31,16 @@ class TasksState extends Equatable {
           (x) => Task.fromMap(x as Map<String, dynamic>),
         ),
       ),
-      // completedTasks: List<Task>.from(
-      //   (map['completedTasks'] as List<int>).map<Task>(
-      //     (x) => Task.fromMap(x as Map<String, dynamic>),
-      //   ),
-      // ),
-      // deleteTasks: List<Task>.from(
-      //   (map['DeleteTasks'] as List<int>).map<Task>(
-      //     (x) => Task.fromMap(x as Map<String, dynamic>),
-      //   ),
-      // ),
+      completedTasks: List<Task>.from(
+        (map['completedTasks'] as List<int>).map<Task>(
+          (x) => Task.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      deleteTasks: List<Task>.from(
+        (map['DeleteTasks'] as List<int>).map<Task>(
+          (x) => Task.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
     );
   }
 
@@ -48,21 +48,4 @@ class TasksState extends Equatable {
 
   factory TasksState.fromJson(String source) =>
       TasksState.fromMap(json.decode(source) as Map<String, dynamic>);
-}
-
-void creatDataBase() async {
-  openDatabase(
-    'tasks.db',
-    version: 1,
-    onCreate: (db, version) async {
-      print('data is created');
-      db
-          .execute('CREAT TABEL tasks (id TEXT PRIMARY KAY, title  TEXT)')
-          .then((value) {
-        print('tabel created');
-      }).catchError((error) {
-        print('Error ${error.toString()}');
-      });
-    },
-  );
 }

@@ -12,6 +12,7 @@ class SqlDb {
 
   _onCreat(Database db, int version) async {
     await db.execute('''
+
 ''');
   }
 }

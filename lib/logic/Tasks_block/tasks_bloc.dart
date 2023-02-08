@@ -11,7 +11,7 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   TasksBloc() : super(const TasksState()) {
     on<AddTask>(_onAddTask);
     on<DeleteTask>(_onDeleteTask);
-    // on<CompletedTasks>(_onUpdateTask);
+    on<CompletedTasks>(_onUpdateTask);
   }
 
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {

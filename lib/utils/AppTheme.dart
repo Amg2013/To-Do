@@ -31,8 +31,8 @@ class AppThemes {
           subtitle1: TextStyle(color: Colors.white),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: Color.fromARGB(255, 0, 0, 0),
-            unselectedItemColor: Color.fromARGB(255, 0, 0, 0),
+            backgroundColor: Color.fromARGB(255, 37, 25, 25),
+            unselectedItemColor: Color.fromARGB(255, 121, 86, 86),
             selectedItemColor: Colors.red),
         appBarTheme: AppBarTheme(color: Color.fromARGB(255, 0, 0, 0))),
 
@@ -40,13 +40,13 @@ class AppThemes {
     //
 
     AppTheme.lightTheme: ThemeData(
-        primarySwatch: Colors.cyan,
+        primarySwatch: Colors.grey,
         primaryColor: Colors.white,
         brightness: Brightness.light,
         backgroundColor: const Color(0xFFE5E5E5),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color.fromARGB(255, 237, 85, 85),
-          foregroundColor: Color.fromARGB(255, 221, 92, 92),
+          backgroundColor: Color.fromARGB(255, 217, 90, 90),
+          foregroundColor: Color.fromARGB(255, 217, 90, 90),
         ),
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
