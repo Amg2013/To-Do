@@ -19,10 +19,10 @@ class AddTask extends TasksEvent {
   List<Object> get props => [task];
 }
 
-class completedTasks extends TasksEvent {
+class CompletedTasks extends TasksEvent {
   final Task task;
 
-  const completedTasks({
+  const CompletedTasks({
     required this.task,
   });
 

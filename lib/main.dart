@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tasks/UI/screens/ListTasks.dart';
-import 'package:tasks/data/Task.dart';
+import 'package:tasks/data/model/Task.dart';
 import 'package:tasks/utils/AppTheme.dart';
 
 import 'logic/Bloc_export.dart';
@@ -27,10 +27,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => TasksBloc()
               ..add(AddTask(
-                  task: Task(
-                      title: 'first one work',
-                      id: '9',
-                      description: 'sdfsdf'))))
+                  task: Task(title: 'first task', id: '9', description: 'A'))))
       ],
       child: BlocBuilder<SwitchBloc, SwitchState>(
         builder: (context, state) {
@@ -39,7 +36,7 @@ class MyApp extends StatelessWidget {
                 ? AppThemes.appThemeData[AppTheme.darkTheme]
                 : AppThemes.appThemeData[AppTheme.lightTheme],
             color: HexColor('#E5E5E5'),
-            home: HomeList(),
+            home: const HomeList(),
             debugShowCheckedModeBanner: false,
           );
         },

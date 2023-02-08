@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../logic/Bloc_export.dart';
-import '../../utils/AppColors.dart';
 
 class NavBar extends StatefulWidget {
   bool isLight = true;
@@ -23,14 +22,14 @@ class _NavBarState extends State<NavBar> {
       builder: (context, state) {
         return BottomNavigationBar(
           currentIndex: 0,
-          selectedItemColor: HexColor("#FF4444").withOpacity(0.7),
+          // selectedItemColor: HexColor("#FF4444").withOpacity(0.7),
           selectedLabelStyle:
               TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
-          unselectedItemColor: AppColors.bottomIconColor,
+          // unselectedItemColor: AppColors.bottomIconColor,
           unselectedLabelStyle: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
-              color: AppColors.bottomIconColor),
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+          ),
           elevation: 0,
           showSelectedLabels: false,
           // var value = true ,

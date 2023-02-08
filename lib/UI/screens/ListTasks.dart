@@ -3,10 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:tasks/UI/screens/Search.dart';
 import 'package:tasks/UI/widgets/body.dart';
-import 'package:tasks/data/Task.dart';
+import 'package:tasks/data/model/Task.dart';
 import 'package:tasks/utils/AppTheme.dart';
 import '../../logic/Bloc_export.dart';
-import '../../utils/AppColors.dart';
 import '../widgets/NavBar.dart';
 
 class HomeList extends StatefulWidget {
@@ -29,8 +28,7 @@ class _HomeListState extends State<HomeList> {
         // backgroundColor: isLight == true
         //     ? AppThemes.mainColor
         //     : Color.fromARGB(31, 43, 39, 39),
-        appBar: AppBar(
-            elevation: 0,
+        appBar: AppBar(elevation: 0,
             // backgroundColor: isLight == true
             //     ? AppThemes.mainColor
             //     : AppThemes.bottomIconColor,
@@ -67,7 +65,6 @@ class _HomeListState extends State<HomeList> {
         body: BodyList(Value: isList),
         floatingActionButton: FloatingActionButton(
             shape: const CircleBorder(),
-            backgroundColor: AppColors.floatingColor,
             child: const Icon(
               Icons.add,
             ),

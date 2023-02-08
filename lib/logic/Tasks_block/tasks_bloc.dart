@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../data/Task.dart';
+import 'package:sqflite/sqflite.dart';
+import '../../data/model/Task.dart';
 import '../Bloc_export.dart';
 part 'tasks_event.dart';
 part 'tasks_state.dart';
@@ -11,14 +11,15 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   TasksBloc() : super(const TasksState()) {
     on<AddTask>(_onAddTask);
     on<DeleteTask>(_onDeleteTask);
-    on<completedTasks>(_onUpdateTask);
+    // on<CompletedTasks>(_onUpdateTask);
   }
+
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(TasksState(allTasks: List.from(state.allTasks)..add(event.task)));
   }
 
-  void _onUpdateTask(completedTasks event, Emitter<TasksState> emit) {
+  void _onUpdateTask(CompletedTasks event, Emitter<TasksState> emit) {
     final state = this.state;
     final task = event.task;
     final int index = state.allTasks.indexOf(task);

@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:tasks/UI/widgets/task_widget.dart';
-import 'package:tasks/utils/AppTheme.dart';
 
-import '../../data/Task.dart';
+import '../../data/model/Task.dart';
 import '../../logic/Bloc_export.dart';
 
 class BodyList extends StatelessWidget {
@@ -27,10 +26,11 @@ class BodyList extends StatelessWidget {
                 Container(
                     margin:
                         const EdgeInsets.only(right: 100, top: 20, bottom: 30),
-                    child: Text(
+                    child: const Text(
                       'What is new ?',
                       style: TextStyle(
-                          fontSize: 30, color: AppThemes.contBackColor),
+                        fontSize: 30,
+                      ),
                     )),
                 Expanded(
                     child: Value == false
