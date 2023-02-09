@@ -27,25 +27,42 @@ class TasksState extends Equatable {
   factory TasksState.fromMap(Map<String, dynamic> map) {
     return TasksState(
       allTasks: List<Task>.from(
-        (map['allTasks'] as List<int>).map<Task>(
-          (x) => Task.fromMap(x as Map<String, dynamic>),
+        map['allTasks']?.map<Task>(
+          (x) => Task.fromMap(x),
         ),
       ),
       completedTasks: List<Task>.from(
-        (map['completedTasks'] as List<int>).map<Task>(
-          (x) => Task.fromMap(x as Map<String, dynamic>),
+        (map['completedTasks'])?.map<Task>(
+          (x) => Task.fromMap(x),
         ),
       ),
-      deleteTasks: List<Task>.from(
-        (map['DeleteTasks'] as List<int>).map<Task>(
-          (x) => Task.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      deleteTasks: List<Task>.from((map['DeleteTasks'] as List<int>)
+          .map<Task>((x) => Task.fromMap(x as Map<String, dynamic>))),
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory TasksState.fromJson(String source) =>
-      TasksState.fromMap(json.decode(source) as Map<String, dynamic>);
 }
+
+  // factory TasksState.fromMap(Map<String, dynamic> map) {
+  //   return TasksState(
+  //     pendingTasks: List<Task>.from(
+  //       (map['pendingTasks'])?.map<Task>(
+  //         (x) => Task.fromMap(x),
+  //       ),
+  //     ),
+  //     completedTasks: List<Task>.from(
+  //       (map['completedTasks'])?.map<Task>(
+  //         (x) => Task.fromMap(x),
+  //       ),
+  //     ),
+  //     favoriteTasks: List<Task>.from(
+  //       (map['favoriteTasks'])?.map<Task>(
+  //         (x) => Task.fromMap(x),
+  //       ),
+  //     ),
+  //     removedTasks: List<Task>.from(
+  //       (map['removedTasks'])?.map<Task>(
+  //         (x) => Task.fromMap(x),
+  //       ),
+  //     ),
+  //   );
+  //}
