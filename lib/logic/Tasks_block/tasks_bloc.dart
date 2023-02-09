@@ -1,13 +1,12 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
-import 'package:sqflite/sqflite.dart';
 import '../../data/model/Task.dart';
 import '../Bloc_export.dart';
 part 'tasks_event.dart';
 part 'tasks_state.dart';
 
-class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
+class TasksBloc extends Bloc<TasksEvent, TasksState> {
   TasksBloc() : super(const TasksState()) {
     on<AddTask>(_onAddTask);
     on<DeleteTask>(_onDeleteTask);

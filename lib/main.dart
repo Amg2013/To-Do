@@ -8,10 +8,10 @@ import 'package:tasks/utils/AppTheme.dart';
 import 'logic/Bloc_export.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: await getApplicationDocumentsDirectory(),
-  );
+  // WidgetsFlutterBinding.ensureInitialized();
+  // HydratedBloc.storage = await HydratedStorage.build(
+  //   storageDirectory: await getApplicationDocumentsDirectory(),
+  // );
   runApp(const MyApp());
 }
 
