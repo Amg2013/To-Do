@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:sqflite/sqflite.dart';
 
 class SqlDb {
@@ -11,9 +13,15 @@ class SqlDb {
   }
 
   _onCreat(Database db, int version) async {
-    await db.execute('''
-
-''');
+    print('database created');
+    db
+        .execute(
+            'CREATE TABLE tasks (id TEXT PRIMARY KEY, title TEXT, date TEXT, status TEXT)')
+        .then((value) {
+      print('table created');
+    }).catchError((error) {
+      print('Error When Creating Table ${error.toString()}');
+    });
   }
 }
 //  void createDataBase() {

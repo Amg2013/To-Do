@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:tasks/UI/screens/ListTasks.dart';
-import 'package:tasks/data/model/Task.dart';
-import 'package:tasks/utils/AppTheme.dart';
+import 'UI/screens/ListTasks.dart';
+import 'data/model/Task.dart';
+import 'utils/AppTheme.dart';
 
 import 'logic/Bloc_export.dart';
 

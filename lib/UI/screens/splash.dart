@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'package:tasks/UI/screens/HomeList.dart';
-import 'package:tasks/UI/screens/ListTasks.dart';
+import 'ListTasks.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
