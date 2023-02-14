@@ -5,18 +5,22 @@ import 'package:sqflite/sqflite.dart';
 class SqlDb {
   intDb() async {
     String databaspath = await getDatabasesPath();
-
     Database db = await openDatabase(
       databaspath,
       onCreate: (_onCreat),
     );
+    _path = db.path;
   }
+
+  late String _path;
+
+  String get path => _path;
 
   _onCreat(Database db, int version) async {
     print('database created');
     db
         .execute(
-            'CREATE TABLE tasks (id TEXT PRIMARY KEY, title TEXT, date TEXT, status TEXT)')
+            'CREATE TABLE tasks (id TEXT PRIMARY KEY , title TEXT,status INTEGER)')
         .then((value) {
       print('table created');
     }).catchError((error) {
