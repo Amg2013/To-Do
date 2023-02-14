@@ -41,4 +41,11 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   Map<String, dynamic>? toJson(TasksState state) {
     return state.toMap();
   }
+
+  @override
+  void onChange(Change<TasksState> change) {
+    print(change.currentState.allTasks.toString() +
+        change.currentState.allTasks.toString());
+    super.onChange(change);
+  }
 }

@@ -40,29 +40,7 @@ class TasksState extends Equatable {
           .map<Task>((x) => Task.fromMap(x as Map<String, dynamic>))),
     );
   }
-}
 
-  // factory TasksState.fromMap(Map<String, dynamic> map) {
-  //   return TasksState(
-  //     pendingTasks: List<Task>.from(
-  //       (map['pendingTasks'])?.map<Task>(
-  //         (x) => Task.fromMap(x),
-  //       ),
-  //     ),
-  //     completedTasks: List<Task>.from(
-  //       (map['completedTasks'])?.map<Task>(
-  //         (x) => Task.fromMap(x),
-  //       ),
-  //     ),
-  //     favoriteTasks: List<Task>.from(
-  //       (map['favoriteTasks'])?.map<Task>(
-  //         (x) => Task.fromMap(x),
-  //       ),
-  //     ),
-  //     removedTasks: List<Task>.from(
-  //       (map['removedTasks'])?.map<Task>(
-  //         (x) => Task.fromMap(x),
-  //       ),
-  //     ),
-  //   );
-  //}
+  @override
+  bool get stringify => true;
+}

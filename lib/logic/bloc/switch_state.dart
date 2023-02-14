@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'switch_bloc.dart';
 
 class SwitchState extends Equatable {
@@ -8,6 +9,9 @@ class SwitchState extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [switchValue];
+
+  @override
+  bool get stringify => true;
 }
 
 class SwitchInitial extends SwitchState {

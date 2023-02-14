@@ -3,6 +3,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tasks/UI/screens/ListTasks.dart';
 import 'package:tasks/data/model/Task.dart';
+import 'package:tasks/logic/myBlocObseriver.dart';
 import 'package:tasks/utils/AppTheme.dart';
 
 import 'logic/Bloc_export.dart';
@@ -12,6 +13,7 @@ void main() async {
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: await getApplicationDocumentsDirectory(),
   );
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
