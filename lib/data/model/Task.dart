@@ -1,5 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, file_names
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable

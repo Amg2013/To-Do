@@ -1,16 +1,17 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:tasks/data/model/Task.dart';
-import '../../logic/Bloc_export.dart';
 
-class Grid_widget extends StatelessWidget {
+import '../../logic/bloc_export.dart';
+
+class Gridwidget extends StatelessWidget {
   final String? titel;
   final String? description;
   final String? id;
   final Task task; //= Task(description: 'sd', id: 'klm', title: 'adsf');
-  Grid_widget(
+  Gridwidget(
       {required this.description,
       required this.id,
       required this.titel,
@@ -27,8 +28,7 @@ class Grid_widget extends StatelessWidget {
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
-          child: Expanded(
-              child: Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
@@ -59,7 +59,7 @@ class Grid_widget extends StatelessWidget {
                 ],
               )
             ],
-          )));
+          ));
     });
   }
 
@@ -70,7 +70,7 @@ class MyWidget1 extends StatelessWidget {
   late final String titel;
   late final String description;
   late final String id;
-  final Task task; //= Task(description: 'sd', id: 'klm', title: 'adsf');
+  final Task task;
   MyWidget1(
       {required this.description,
       required this.id,
@@ -89,8 +89,7 @@ class MyWidget1 extends StatelessWidget {
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
-            child: Expanded(
-                child: Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
@@ -111,7 +110,7 @@ class MyWidget1 extends StatelessWidget {
                         context.read<TasksBloc>()..add(DeleteTask(task: task))),
                 //  const SizedBox(width: 10),
               ],
-            )));
+            ));
       },
     );
   }

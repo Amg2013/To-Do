@@ -1,10 +1,9 @@
-import 'dart:async';
+// ignore_for_file: prefer_const_constructors
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-import 'package:tasks/UI/screens/HomeList.dart';
-import 'package:tasks/UI/screens/ListTasks.dart';
+import 'listTasks.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -18,7 +17,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Timer(
-      const Duration(seconds: 1),
+      const Duration(seconds: 4),
       () {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (BuildContext context) => HomeList()));

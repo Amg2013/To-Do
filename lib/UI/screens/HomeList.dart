@@ -1,4 +1,4 @@
-// // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutable, file_names, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutable, file_names, non_constant_identifier_names
 
 // import 'package:flutter/material.dart';
 // import 'package:spincircle_bottom_bar/modals.dart';

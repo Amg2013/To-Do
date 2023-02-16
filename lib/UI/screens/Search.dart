@@ -1,10 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:tasks/UI/screens/ListTasks.dart';
-import 'package:tasks/UI/widgets/body.dart';
-import 'package:tasks/UI/widgets/task_widget.dart';
-import 'package:tasks/data/model/Task.dart';
+import '../widgets/task_widget.dart';
+import '../../data/model/Task.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});

@@ -1,6 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'package:equatable/equatable.dart';
+
 import '../../data/model/Task.dart';
-import '../Bloc_export.dart';
+import '../bloc_export.dart';
+
 part 'tasks_event.dart';
 part 'tasks_state.dart';
 
@@ -13,7 +17,11 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
 
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {
     final state = this.state;
-    emit(TasksState(allTasks: List.from(state.allTasks)..add(event.task)));
+    emit(
+      TasksState(
+        allTasks: List.from(state.allTasks)..add(event.task),
+      ),
+    );
   }
 
   void _onUpdateTask(CompletedTasks event, Emitter<TasksState> emit) {

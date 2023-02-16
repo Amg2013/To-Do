@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:tasks/UI/widgets/task_widget.dart';
 
 import '../../data/model/Task.dart';
-import '../../logic/Bloc_export.dart';
+import '../../logic/bloc_export.dart';
 
+// ignore: must_be_immutable
 class BodyList extends StatelessWidget {
   Task? task;
   bool? Value;
@@ -48,13 +49,13 @@ class BodyList extends StatelessWidget {
                           )
                         : GridView.builder(
                             gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
                                     maxCrossAxisExtent: 300),
                             shrinkWrap: true,
                             itemCount: taskList.length,
                             itemBuilder: (context, int index) {
                               var task = taskList[index];
-                              return Grid_widget(
+                              return Gridwidget(
                                   task: task,
                                   description: task.description,
                                   id: task.id,

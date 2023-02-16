@@ -1,14 +1,13 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: file_names, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 
-import '../../logic/Bloc_export.dart';
+import '../../logic/bloc_export.dart';
 
 class NavBar extends StatefulWidget {
   bool isLight = true;
 
-  NavBar({required this.isLight});
+  NavBar({super.key, required this.isLight});
   @override
   State<NavBar> createState() => _NavBarState();
 }
@@ -24,9 +23,9 @@ class _NavBarState extends State<NavBar> {
           currentIndex: 0,
           // selectedItemColor: HexColor("#FF4444").withOpacity(0.7),
           selectedLabelStyle:
-              TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+              const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
           // unselectedItemColor: AppColors.bottomIconColor,
-          unselectedLabelStyle: TextStyle(
+          unselectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 14,
           ),

@@ -1,22 +1,22 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 
 import '../../utils/valuse.dart';
 
-class Bottom_sheet extends StatefulWidget {
-  const Bottom_sheet({
+class BottomSheet extends StatefulWidget {
+  const BottomSheet({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Bottom_sheet> createState() => _Bottom_sheetState();
+  State<BottomSheet> createState() => _BottomSheetState();
 }
 
-class _Bottom_sheetState extends State<Bottom_sheet> {
+class _BottomSheetState extends State<BottomSheet> {
   var tx1Controller = TextEditingController();
   var tx2Controller = TextEditingController();
-  Future<dynamic> ShowBottomSheet(BuildContext context) {
+  Future<dynamic> showBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
       builder: (context) {

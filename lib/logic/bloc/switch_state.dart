@@ -7,7 +7,6 @@ class SwitchState extends Equatable {
   const SwitchState({required this.switchValue});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [switchValue];
 
   @override

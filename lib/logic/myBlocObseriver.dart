@@ -1,26 +1,20 @@
-import 'Bloc_export.dart';
-import 'package:bloc/bloc.dart';
+// ignore_for_file: file_names
+
+import 'package:flutter/cupertino.dart';
+
+import 'bloc_export.dart';
 
 class MyBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    print(event.toString());
+
+    debugPrint(event.toString());
   }
 
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    debugPrint(error.toString());
     super.onError(bloc, error, stackTrace);
-  }
-
-  @override
-  void onChange(BlocBase bloc, Change change) {
-    print(change.toString());
-    super.onChange(bloc, change);
-  }
-
-  @override
-  void onTransition(Bloc bloc, Transition transition) {
-    super.onTransition(bloc, transition);
   }
 }

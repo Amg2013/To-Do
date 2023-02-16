@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, file_names
 
 import 'package:flutter/material.dart';
 import 'package:tasks/UI/screens/Search.dart';
 import 'package:tasks/UI/widgets/body.dart';
 import 'package:tasks/data/model/Task.dart';
-import 'package:tasks/utils/AppTheme.dart';
-import '../../logic/Bloc_export.dart';
+
+import '../../logic/bloc_export.dart';
 import '../widgets/NavBar.dart';
 
 class HomeList extends StatefulWidget {
@@ -33,8 +33,7 @@ class _HomeListState extends State<HomeList> {
             //     ? AppThemes.mainColor
             //     : AppThemes.bottomIconColor,
             actions: [
-              Expanded(
-                  child: Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const SizedBox(width: 30),
@@ -60,7 +59,7 @@ class _HomeListState extends State<HomeList> {
                       },
                       icon: const Icon(Icons.search))
                 ],
-              ))
+              )
             ]),
         body: BodyList(Value: isList),
         floatingActionButton: FloatingActionButton(

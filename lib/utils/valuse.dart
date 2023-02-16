@@ -1,8 +1,7 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, camel_case_types
 
 import 'dart:ui';
 
-import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class C_Coloers {
