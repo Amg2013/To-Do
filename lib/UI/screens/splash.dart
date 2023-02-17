@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'listTasks.dart';
+
+import 'home_list.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -19,8 +19,8 @@ class _SplashState extends State<Splash> {
     Timer(
       const Duration(seconds: 1),
       () {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) => HomeList()));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => const HomeList()));
       },
     );
   }

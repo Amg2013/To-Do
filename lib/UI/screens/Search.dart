@@ -1,7 +1,5 @@
-// ignore_for_file: file_names, prefer_const_constructors, unused_local_variable
-
 import 'package:flutter/material.dart';
-import 'package:tasks/data/model/Task.dart';
+import '../../data/model/Task.dart';
 import '../widgets/task_widget.dart';
 
 class Search extends StatefulWidget {
@@ -59,8 +57,8 @@ class _SearchState extends State<Search> {
                           },
                           icon: const Icon(Icons.cancel_outlined)),
                       labelText: 'search',
-                      suffixIcon: Icon(Icons.search_sharp),
-                      border: OutlineInputBorder(
+                      suffixIcon: const Icon(Icons.search_sharp),
+                      border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                       )))),
         ),
@@ -79,7 +77,7 @@ class _SearchState extends State<Search> {
                         titel: '${Text(foundedTasks[index].title)}',
                         task: task);
                   }))
-          : Center(
+          : const Center(
               child: Text(
               'no thing find',
               style: TextStyle(fontSize: 24),

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -12,7 +12,8 @@ class Gridwidget extends StatelessWidget {
   final String? id;
   final Task task; //= Task(description: 'sd', id: 'klm', title: 'adsf');
   Gridwidget(
-      {required this.description,
+      {super.key,
+      required this.description,
       required this.id,
       required this.titel,
       required this.task});
@@ -22,18 +23,18 @@ class Gridwidget extends StatelessWidget {
       return Container(
           height: 220,
           width: 200,
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: HexColor('#FF4444'),
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
                 task.title,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                     fontWeight: FontWeight.w800),
@@ -41,7 +42,8 @@ class Gridwidget extends StatelessWidget {
               SizedBox(
                 height: 40,
                 child: Text(task.description,
-                    style: TextStyle(fontSize: 18, color: Color(0xFFF4E8E8))),
+                    style: const TextStyle(
+                        fontSize: 18, color: Color(0xFFF4E8E8))),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -53,7 +55,7 @@ class Gridwidget extends StatelessWidget {
                           ? Icons.check_box_outline_blank_sharp
                           : Icons.check_box_outlined)),
                   IconButton(
-                      icon: Icon(Icons.delete_outline_outlined),
+                      icon: const Icon(Icons.delete_outline_outlined),
                       onPressed: () => context.read<TasksBloc>()
                         ..add(DeleteingTask(task: task))),
                 ],
@@ -72,7 +74,8 @@ class MyWidget1 extends StatelessWidget {
   late final String id;
   final Task task;
   MyWidget1(
-      {required this.description,
+      {super.key,
+      required this.description,
       required this.id,
       required this.titel,
       required this.task});
@@ -83,11 +86,11 @@ class MyWidget1 extends StatelessWidget {
         return Container(
             height: 70,
             width: 380,
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: HexColor('#FF4444'),
               shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -105,7 +108,7 @@ class MyWidget1 extends StatelessWidget {
                 ),
 
                 IconButton(
-                    icon: Icon(Icons.delete_outline_outlined),
+                    icon: const Icon(Icons.delete_outline_outlined),
                     onPressed: () => context.read<TasksBloc>()
                       ..add(DeleteingTask(task: task))),
                 //  const SizedBox(width: 10),

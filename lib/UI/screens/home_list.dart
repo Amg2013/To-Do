@@ -1,12 +1,10 @@
-// ignore_for_file: prefer_const_constructors, file_names
-
 import 'package:flutter/material.dart';
-import 'package:tasks/UI/screens/Search.dart';
-import 'package:tasks/UI/widgets/body.dart';
-import 'package:tasks/data/model/Task.dart';
 
+import '../../data/model/Task.dart';
 import '../../logic/bloc_export.dart';
-import '../widgets/NavBar.dart';
+import '../widgets/body.dart';
+import '../widgets/nav_bar.dart';
+import 'Search.dart';
 
 class HomeList extends StatefulWidget {
   const HomeList({Key? key}) : super(key: key);
@@ -35,10 +33,10 @@ class _HomeListState extends State<HomeList> {
                   icon: Icon(isList == false
                       ? Icons.pivot_table_chart
                       : Icons.grid_view_outlined)),
-              SizedBox(width: 30),
+              const SizedBox(width: 30),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 50),
-                child: Text('My Tasks',
+                margin: const EdgeInsets.symmetric(horizontal: 50),
+                child: const Text('My Tasks',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
@@ -54,7 +52,7 @@ class _HomeListState extends State<HomeList> {
             ],
           )
         ]),
-        body: BodyList(Value: isList),
+        body: BodyList(value: isList),
         floatingActionButton: FloatingActionButton(
             shape: const CircleBorder(),
             child: const Icon(
@@ -71,12 +69,12 @@ class _HomeListState extends State<HomeList> {
 
   void gridToList(bool falge) {
     if (falge == true) {
-      BodyList(Value: isList);
+      BodyList(value: isList);
       setState(() {
         isList = false;
       });
     } else {
-      BodyList(Value: false);
+      BodyList(value: false);
       setState(() {
         isList = true;
       });
@@ -91,9 +89,9 @@ Future<dynamic> showBottomSheet(BuildContext context) {
     context: context,
     builder: (context) {
       return Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 10),
           height: 350,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadiusDirectional.only(
               topStart: Radius.circular(100),
               topEnd: Radius.circular(90),
@@ -108,7 +106,7 @@ Future<dynamic> showBottomSheet(BuildContext context) {
               children: [
                 TextField(
                   controller: txTilte,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       counterText: 'Todo title',
                       hintText: 'Todo title..... ',
                       border: OutlineInputBorder()),
@@ -116,7 +114,7 @@ Future<dynamic> showBottomSheet(BuildContext context) {
                 ),
                 TextField(
                   controller: txDesc,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       counterText: 'Todo title',
                       hintText: 'Todo title..... ',
                       border: OutlineInputBorder()),
@@ -134,7 +132,7 @@ Future<dynamic> showBottomSheet(BuildContext context) {
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 179, 45, 35),
+                        color: const Color.fromARGB(255, 179, 45, 35),
                         borderRadius: BorderRadius.circular(90)),
                     child: const Center(
                       child: Text(

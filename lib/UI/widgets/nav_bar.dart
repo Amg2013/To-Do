@@ -1,9 +1,8 @@
-// ignore_for_file: file_names, must_be_immutable
-
 import 'package:flutter/material.dart';
 
 import '../../logic/bloc_export.dart';
 
+// ignore: must_be_immutable, I don't need to make this class immutabel
 class NavBar extends StatefulWidget {
   bool isLight = true;
 
@@ -17,7 +16,7 @@ class _NavBarState extends State<NavBar> {
   bool? isLight = true;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SwitchBloc, SwitchState>(
+    return BlocBuilder<SwitchThemeBloc, SwitchState>(
       builder: (context, state) {
         return BottomNavigationBar(
           currentIndex: 0,
@@ -50,12 +49,12 @@ class _NavBarState extends State<NavBar> {
 
   void changeTheme(bool falge) {
     if (falge == true) {
-      context.read<SwitchBloc>().add(Onevent());
+      context.read<SwitchThemeBloc>().add(Onevent());
       setState(() {
         isLight = false;
       });
     } else {
-      context.read<SwitchBloc>().add(Offevent());
+      context.read<SwitchThemeBloc>().add(Offevent());
       setState(() {
         isLight = true;
       });

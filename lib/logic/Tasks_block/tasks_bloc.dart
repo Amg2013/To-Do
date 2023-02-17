@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:equatable/equatable.dart';
 
 import '../../data/model/Task.dart';
@@ -53,12 +51,5 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   @override
   Map<String, dynamic>? toJson(TasksState state) {
     return state.toMap();
-  }
-
-  @override
-  void onChange(Change<TasksState> change) {
-    print(change.currentState.allTasks.toString() +
-        change.currentState.allTasks.toString());
-    super.onChange(change);
   }
 }

@@ -1,7 +1,5 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
-import 'package:tasks/UI/widgets/task_widget.dart';
+import 'task_widget.dart';
 
 import '../../data/model/Task.dart';
 import '../../logic/bloc_export.dart';
@@ -9,9 +7,9 @@ import '../../logic/bloc_export.dart';
 // ignore: must_be_immutable
 class BodyList extends StatelessWidget {
   Task? task;
-  bool? Value;
+  bool? value;
   BodyList({
-    this.Value,
+    this.value,
     Key? key,
   }) : super(key: key);
 
@@ -34,7 +32,7 @@ class BodyList extends StatelessWidget {
                       ),
                     )),
                 Expanded(
-                    child: Value == false
+                    child: value == false
                         ? ListView.builder(
                             shrinkWrap: true,
                             itemCount: taskList.length,

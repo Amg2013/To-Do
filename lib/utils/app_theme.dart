@@ -1,5 +1,3 @@
-// ignore_for_file: file_names, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 enum AppTheme { darkTheme, lightTheme }
@@ -34,7 +32,7 @@ class AppThemes {
             backgroundColor: Color.fromARGB(255, 37, 25, 25),
             unselectedItemColor: Color.fromARGB(255, 121, 86, 86),
             selectedItemColor: Colors.red),
-        appBarTheme: AppBarTheme(color: Color.fromARGB(255, 0, 0, 0))),
+        appBarTheme: const AppBarTheme(color: Color.fromARGB(255, 0, 0, 0))),
 
     //
     //
@@ -53,13 +51,13 @@ class AppThemes {
             foregroundColor: MaterialStateProperty.all(Colors.red),
           ),
         ),
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           subtitle1: TextStyle(color: Colors.red),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             backgroundColor: Colors.white,
             selectedItemColor: Colors.black,
             unselectedItemColor: Colors.grey),
-        appBarTheme: AppBarTheme(color: Colors.white)),
+        appBarTheme: const AppBarTheme(color: Colors.white)),
   };
 }

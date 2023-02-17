@@ -1,7 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, file_names
 import 'package:equatable/equatable.dart';
 
-// ignore: must_be_immutable
+// ignore: must_be_immutable, I don't need to make this class immutabel
 class Task extends Equatable {
   final String id;
   final String title;
@@ -67,9 +66,3 @@ class Task extends Equatable {
     );
   }
 }
-
-// List<Task> ListData = [
-//   Task(title: "sddf", content: "dsf", id: "90"),
-//   Task(title: 'beshoy ', content: 'content', id: '91'),
-//   Task(title: 'amg', content: 'content', id: '92'),
-// ];
