@@ -40,7 +40,7 @@ class Gridwidget extends StatelessWidget {
               ),
               SizedBox(
                 height: 40,
-                child: Text('Task',
+                child: Text(task.description,
                     style: TextStyle(fontSize: 18, color: Color(0xFFF4E8E8))),
               ),
               Row(
@@ -48,14 +48,14 @@ class Gridwidget extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () => context.read<TasksBloc>()
-                        ..add(CompletedTasks(task: task)),
+                        ..add(CompleteingTasks(task: task)),
                       icon: Icon(task.isDone == false
                           ? Icons.check_box_outline_blank_sharp
                           : Icons.check_box_outlined)),
                   IconButton(
                       icon: Icon(Icons.delete_outline_outlined),
                       onPressed: () => context.read<TasksBloc>()
-                        ..add(DeleteTask(task: task))),
+                        ..add(DeleteingTask(task: task))),
                 ],
               )
             ],
@@ -94,7 +94,7 @@ class MyWidget1 extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () => context.read<TasksBloc>()
-                    ..add(CompletedTasks(task: task)),
+                    ..add(CompleteingTasks(task: task)),
                   icon: Icon(task.isDone == false
                       ? Icons.check_box_outline_blank_sharp
                       : Icons.check_box_outlined),
@@ -106,8 +106,8 @@ class MyWidget1 extends StatelessWidget {
 
                 IconButton(
                     icon: Icon(Icons.delete_outline_outlined),
-                    onPressed: () =>
-                        context.read<TasksBloc>()..add(DeleteTask(task: task))),
+                    onPressed: () => context.read<TasksBloc>()
+                      ..add(DeleteingTask(task: task))),
                 //  const SizedBox(width: 10),
               ],
             ));

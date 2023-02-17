@@ -25,42 +25,35 @@ class _HomeListState extends State<HomeList> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: isLight == true
-        //     ? AppThemes.mainColor
-        //     : Color.fromARGB(31, 43, 39, 39),
-        appBar: AppBar(elevation: 0,
-            // backgroundColor: isLight == true
-            //     ? AppThemes.mainColor
-            //     : AppThemes.bottomIconColor,
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const SizedBox(width: 30),
-                  IconButton(
-                      onPressed: () => gridToList(isList!),
-                      icon: Icon(isList == false
-                          ? Icons.pivot_table_chart
-                          : Icons.grid_view_outlined)),
-                  SizedBox(width: 30),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 50),
-                    child: Text('My Tasks',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        )),
-                  ),
-                  const SizedBox(width: 20),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => const Search()));
-                      },
-                      icon: const Icon(Icons.search))
-                ],
-              )
-            ]),
+        appBar: AppBar(elevation: 0, actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const SizedBox(width: 30),
+              IconButton(
+                  onPressed: () => gridToList(isList!),
+                  icon: Icon(isList == false
+                      ? Icons.pivot_table_chart
+                      : Icons.grid_view_outlined)),
+              SizedBox(width: 30),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 50),
+                child: Text('My Tasks',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    )),
+              ),
+              const SizedBox(width: 20),
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => const Search()));
+                  },
+                  icon: const Icon(Icons.search))
+            ],
+          )
+        ]),
         body: BodyList(Value: isList),
         floatingActionButton: FloatingActionButton(
             shape: const CircleBorder(),
@@ -135,7 +128,7 @@ Future<dynamic> showBottomSheet(BuildContext context) {
                         title: txTilte.text,
                         description: txDesc.text,
                         id: txTilte.text);
-                    context.read<TasksBloc>().add(AddTask(task: task1));
+                    context.read<TasksBloc>().add(AddingTask(task: task1));
                     Navigator.pop(context);
                   },
                   child: Container(

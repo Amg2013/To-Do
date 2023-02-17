@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable, must_be_immutable, duplicate_ignore
 
 part of 'tasks_bloc.dart';
 
@@ -43,4 +43,12 @@ class TasksState extends Equatable {
 
   @override
   bool get stringify => true;
+}
+
+// ignore: camel_case_types
+class loadedTasks extends Equatable {
+  List<Task>? loadTasks;
+
+  @override
+  List<Object?> get props => [loadedTasks];
 }

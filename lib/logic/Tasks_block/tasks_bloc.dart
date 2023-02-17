@@ -10,12 +10,13 @@ part 'tasks_state.dart';
 
 class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   TasksBloc() : super(const TasksState()) {
-    on<AddTask>(_onAddTask);
-    on<DeleteTask>(_onDeleteTask);
-    on<CompletedTasks>(_onUpdateTask);
+    on<AddingTask>(_onAddTask);
+    //on<ShowingTask>(_onShowingTask);
+    on<DeleteingTask>(_onDeleteTask);
+    on<CompleteingTasks>(_onCompletingTask);
   }
 
-  void _onAddTask(AddTask event, Emitter<TasksState> emit) {
+  void _onAddTask(AddingTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(
       TasksState(
@@ -24,7 +25,7 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     );
   }
 
-  void _onUpdateTask(CompletedTasks event, Emitter<TasksState> emit) {
+  void _onCompletingTask(CompleteingTasks event, Emitter<TasksState> emit) {
     final state = this.state;
     final task = event.task;
     final int index = state.allTasks.indexOf(task);
@@ -35,10 +36,14 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     emit(TasksState(allTasks: allTasks));
   }
 
-  void _onDeleteTask(DeleteTask event, Emitter<TasksState> emit) {
+  void _onDeleteTask(DeleteingTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(TasksState(allTasks: List.from(state.allTasks)..remove(event.task)));
   }
+  // void _onShowingTask(DeleteingTask event, Emitter<TasksState> emit) {
+  //   final state = this.state;
+  //   emit(ShowingTask(allTasks: List.from(state.allTasks)));
+  // }
 
   @override
   TasksState? fromJson(Map<String, dynamic> json) {

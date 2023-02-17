@@ -1,8 +1,8 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:tasks/data/model/Task.dart';
 import '../widgets/task_widget.dart';
-import '../../data/model/Task.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -13,53 +13,77 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   final searchController = TextEditingController();
-  late List<Task> listToSearch = [
-    Task(id: 'id', title: 'title', description: 'descrap'),
+
+  final List<Task> listToSearch = [];
+  //
+  List<Task> foundedTasks = [
+    Task(id: 'id', title: 'title', description: 'description')
   ];
+
+  void _runFilter(String enteredKeyword) {
+    List<Task> results = [];
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all tasks
+      results = listToSearch;
+    } else {
+      results = foundedTasks
+          .where((task) =>
+              task.title.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+      // we use the toLowerCase() method to make it case-insensitive
+    }
+  }
+
+  @override
+  initState() {
+    foundedTasks = listToSearch;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
-      appBar: AppBar(elevation: 0, actions: [
-        Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.cancel_outlined)),
-            Container(
+      appBar: AppBar(automaticallyImplyLeading: false, elevation: 0, actions: [
+        Center(
+          child: Container(
               height: 60,
               width: 380,
               margin: const EdgeInsets.all(5),
               child: TextField(
-                controller: searchController,
-                autofocus: true,
-                decoration: const InputDecoration(
-                    labelText: 'search',
-                    suffixIcon: Icon(Icons.search_sharp),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                    )),
-              ),
-            ),
-          ],
+                  onChanged: (value) => _runFilter(value),
+                  autofocus: true,
+                  decoration: InputDecoration(
+                      prefixIcon: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.cancel_outlined)),
+                      labelText: 'search',
+                      suffixIcon: Icon(Icons.search_sharp),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                      )))),
         ),
       ]),
-      body: Container(
-        height: double.infinity,
-        margin: const EdgeInsets.all(20),
-        child: ListView.builder(
-            itemCount: listToSearch.length,
-            itemBuilder: (context, index) {
-              final task = listToSearch[index];
-              return MyWidget1(
-                  description: task.description,
-                  id: task.id,
-                  titel: task.title,
-                  task: task);
-            }),
-      ),
+      body: foundedTasks.isNotEmpty
+          ? Container(
+              height: double.infinity,
+              margin: const EdgeInsets.all(20),
+              child: ListView.builder(
+                  itemCount: listToSearch.length,
+                  itemBuilder: (context, index) {
+                    final task = listToSearch[index];
+                    return MyWidget1(
+                        description: '${Text(foundedTasks[index].description)}',
+                        id: '${Text(foundedTasks[index].id)}',
+                        titel: '${Text(foundedTasks[index].title)}',
+                        task: task);
+                  }))
+          : Center(
+              child: Text(
+              'no thing find',
+              style: TextStyle(fontSize: 24),
+            )),
     ));
   }
 }

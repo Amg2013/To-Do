@@ -17,7 +17,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Timer(
-      const Duration(seconds: 4),
+      const Duration(seconds: 1),
       () {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (BuildContext context) => HomeList()));
@@ -106,19 +106,20 @@ class _SplashState extends State<Splash> {
     );
   }
 
-  void onFinish() async {
-    await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeList(),
-        ));
-  }
+  // void onFinish() async {
+  //   await Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => HomeList(),
+  //       ));
+  // }
 
-  void onWaitingProcess() {
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        isfinshed = true;
-      });
-    });
-  }
+  // void onWaitingProcess() {
+  //   Future.delayed(const Duration(seconds: 1), () {
+  //     setState(() {
+  //       isfinshed = true;
+  //     });
+
+  //   });
+
 }

@@ -15,6 +15,7 @@ class MyBlocObserver extends BlocObserver {
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     debugPrint(error.toString());
+    //print(error.toString());
     super.onError(bloc, error, stackTrace);
   }
 }

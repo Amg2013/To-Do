@@ -12,6 +12,7 @@ void main() async {
     storageDirectory: await getApplicationDocumentsDirectory(),
   );
   Bloc.observer = MyBlocObserver();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
