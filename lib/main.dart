@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:tasks/UI/screens/splash.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks/UI/screens/ListTasks.dart';
-import 'package:tasks/data/Task.dart';
-import 'package:tasks/logic/bloc/switch_bloc.dart';
-import 'package:tasks/utils/AppTheme.dart';
-
-import 'logic/Bloc_export.dart';
+import 'UI/screens/splash.dart';
+import 'logic/bloc_export.dart';
+import 'logic/my_bloc_obseriver.dart';
+import 'utils/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  final storage = await HydratedStorage.build(
-      storageDirectory: await getApplicationDocumentsDirectory());
-  storage:
-  storage;
-  BlocOverrides.runZoned(
-    () => runApp(MyApp()),
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: await getApplicationDocumentsDirectory(),
   );
-
-  // HydratedBlocOverrides.runZoned(
-  //   () => runApp(MyApp()),
-  // storage:storage;
-  // );
+  Bloc.observer = MyBlocObserver();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,26 +19,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => SwitchBloc()),
-        BlocProvider(
-            create: (context) => TasksBloc()
-              ..add(AddTask(
-                  task: Task(
-                      title: 'first one work',
-                      id: '9',
-                      description: 'sdfsdf'))))
+        BlocProvider(create: (context) => SwitchThemeBloc()),
+        BlocProvider(create: (context) => TasksBloc()
+            //   ..add(AddTask(
+            //       task: Task(title: 'first task', id: '9', description: 'A')))
+
+            )
       ],
-      child: BlocBuilder<SwitchBloc, SwitchState>(
+      child: BlocBuilder<SwitchThemeBloc, SwitchState>(
         builder: (context, state) {
           return MaterialApp(
             theme: state.switchValue
                 ? AppThemes.appThemeData[AppTheme.darkTheme]
                 : AppThemes.appThemeData[AppTheme.lightTheme],
-            color: HexColor('#E5E5E5'),
-            home: HomeList(),
+            home: const Splash(),
             debugShowCheckedModeBanner: false,
           );
         },
@@ -59,12 +42,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-// BlocProvider(
-//       create: (context) => ThemeBloc(),
-//       child: MaterialApp(
-//         color: HexColor('#E5E5E5'),
-//         home: const Splash(),
-//         debugShowCheckedModeBanner: false,
-//       ),

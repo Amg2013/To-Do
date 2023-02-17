@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'package:tasks/UI/screens/HomeList.dart';
-import 'package:tasks/UI/screens/ListTasks.dart';
+import 'home_list.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -20,8 +19,8 @@ class _SplashState extends State<Splash> {
     Timer(
       const Duration(seconds: 1),
       () {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) => HomeList()));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => const HomeList()));
       },
     );
   }
@@ -107,19 +106,20 @@ class _SplashState extends State<Splash> {
     );
   }
 
-  void onFinish() async {
-    await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeList(),
-        ));
-  }
+  // void onFinish() async {
+  //   await Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => HomeList(),
+  //       ));
+  // }
 
-  void onWaitingProcess() {
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        isfinshed = true;
-      });
-    });
-  }
+  // void onWaitingProcess() {
+  //   Future.delayed(const Duration(seconds: 1), () {
+  //     setState(() {
+  //       isfinshed = true;
+  //     });
+
+  //   });
+
 }

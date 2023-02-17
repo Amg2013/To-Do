@@ -1,24 +1,29 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../data/Task.dart';
-import '../Bloc_export.dart';
+import '../../data/model/Task.dart';
+import '../bloc_export.dart';
 
 part 'tasks_event.dart';
 part 'tasks_state.dart';
 
 class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   TasksBloc() : super(const TasksState()) {
-    on<AddTask>(_onAddTask);
-    on<DeleteTask>(_onDeleteTask);
-    on<completedTasks>(_onUpdateTask);
-  }
-  void _onAddTask(AddTask event, Emitter<TasksState> emit) {
-    final state = this.state;
-    emit(TasksState(allTasks: List.from(state.allTasks)..add(event.task)));
+    on<AddingTask>(_onAddTask);
+    //on<ShowingTask>(_onShowingTask);
+    on<DeleteingTask>(_onDeleteTask);
+    on<CompleteingTasks>(_onCompletingTask);
   }
 
-  void _onUpdateTask(completedTasks event, Emitter<TasksState> emit) {
+  void _onAddTask(AddingTask event, Emitter<TasksState> emit) {
+    final state = this.state;
+    emit(
+      TasksState(
+        allTasks: List.from(state.allTasks)..add(event.task),
+      ),
+    );
+  }
+
+  void _onCompletingTask(CompleteingTasks event, Emitter<TasksState> emit) {
     final state = this.state;
     final task = event.task;
     final int index = state.allTasks.indexOf(task);
@@ -29,10 +34,14 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     emit(TasksState(allTasks: allTasks));
   }
 
-  void _onDeleteTask(DeleteTask event, Emitter<TasksState> emit) {
+  void _onDeleteTask(DeleteingTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(TasksState(allTasks: List.from(state.allTasks)..remove(event.task)));
   }
+  // void _onShowingTask(DeleteingTask event, Emitter<TasksState> emit) {
+  //   final state = this.state;
+  //   emit(ShowingTask(allTasks: List.from(state.allTasks)));
+  // }
 
   @override
   TasksState? fromJson(Map<String, dynamic> json) {

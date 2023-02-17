@@ -1,17 +1,15 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
-import 'package:tasks/UI/widgets/task_widget.dart';
-import 'package:tasks/utils/AppTheme.dart';
+import 'task_widget.dart';
 
-import '../../data/Task.dart';
-import '../../logic/Bloc_export.dart';
+import '../../data/model/Task.dart';
+import '../../logic/bloc_export.dart';
 
+// ignore: must_be_immutable
 class BodyList extends StatelessWidget {
   Task? task;
-  bool? Value;
+  bool? value;
   BodyList({
-    this.Value,
+    this.value,
     Key? key,
   }) : super(key: key);
 
@@ -27,13 +25,14 @@ class BodyList extends StatelessWidget {
                 Container(
                     margin:
                         const EdgeInsets.only(right: 100, top: 20, bottom: 30),
-                    child: Text(
+                    child: const Text(
                       'What is new ?',
                       style: TextStyle(
-                          fontSize: 30, color: AppThemes.contBackColor),
+                        fontSize: 30,
+                      ),
                     )),
                 Expanded(
-                    child: Value == false
+                    child: value == false
                         ? ListView.builder(
                             shrinkWrap: true,
                             itemCount: taskList.length,
@@ -48,13 +47,13 @@ class BodyList extends StatelessWidget {
                           )
                         : GridView.builder(
                             gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
                                     maxCrossAxisExtent: 300),
                             shrinkWrap: true,
                             itemCount: taskList.length,
                             itemBuilder: (context, int index) {
                               var task = taskList[index];
-                              return Grid_widget(
+                              return Gridwidget(
                                   task: task,
                                   description: task.description,
                                   id: task.id,
