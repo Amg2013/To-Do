@@ -6,6 +6,7 @@ class Task extends Equatable {
   final String title;
   final String description;
   bool? isDone;
+  //why using is deleted?!?!
   bool? isDeleted;
 
   Task({

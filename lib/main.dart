@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<SwitchThemeBloc, SwitchState>(
         builder: (context, state) {
           return MaterialApp(
+            ///it's  better to make the state return which theme to use instead of if else
             theme: state.switchValue
                 ? AppThemes.appThemeData[AppTheme.darkTheme]
                 : AppThemes.appThemeData[AppTheme.lightTheme],

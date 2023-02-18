@@ -35,11 +35,13 @@ class BodyList extends StatelessWidget {
                     )),
                 Expanded(
                     child: value == false
+                    ///try to take them out as functions and call them here
                         ? ListView.builder(
                             shrinkWrap: true,
                             itemCount: taskList.length,
                             itemBuilder: (context, int index) {
                               var task = taskList[index];
+                              ///great use
                               return MyWidget1(
                                 task: task,
                                 description: task.description,

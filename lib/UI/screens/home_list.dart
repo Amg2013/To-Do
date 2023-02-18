@@ -68,7 +68,7 @@ class _HomeListState extends State<HomeList> {
       ),
     );
   }
-
+///Nice
   void gridToList(bool falge) {
     if (falge == true) {
       BodyList(

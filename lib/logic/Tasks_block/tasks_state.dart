@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 part of 'tasks_bloc.dart';
-
+///why having all this logic done in the state not in bloc?
 class TasksState extends Equatable {
   final List<Task> allTasks;
   final List<Task> completedTasks;

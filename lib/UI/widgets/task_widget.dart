@@ -7,6 +7,7 @@ import 'package:tasks/utils/app_theme.dart';
 import '../../logic/bloc_export.dart';
 
 class Gridwidget extends StatelessWidget {
+  //why nullabel variables??
   final bool? isLight;
   final String? titel;
   final String? description;
@@ -55,6 +56,8 @@ class Gridwidget extends StatelessWidget {
                   IconButton(
                       onPressed: () => context.read<TasksBloc>()
                         ..add(CompleteingTasks(task: task)),
+
+                      ///put the three icons in a list and give it the index instead of the 2 if else
                       icon: Icon(task.isDone == false
                           ? Icons.check_box_outline_blank_sharp
                           : Icons.check_box_outlined)),
@@ -71,6 +74,8 @@ class Gridwidget extends StatelessWidget {
 
   // end of class
 }
+
+///why having both of them in the same file
 
 class MyWidget1 extends StatelessWidget {
   late final String titel;
@@ -106,6 +111,9 @@ class MyWidget1 extends StatelessWidget {
                 IconButton(
                   onPressed: () => context.read<TasksBloc>()
                     ..add(CompleteingTasks(task: task)),
+
+                  ///put the three icons in a list and give it the index instead of the 2 if else
+
                   icon: Icon(task.isDone == false
                       ? Icons.check_box_outline_blank_sharp
                       : Icons.check_box_outlined),
