@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tasks/utils/app_theme.dart';
+import 'package:tasks/utils/constantes.dart';
 
 import '../../data/model/Task.dart';
 import '../../logic/bloc_export.dart';
 import '../widgets/body.dart';
-import '../widgets/nav_bar.dart';
+import '../widgets/nav_bottom_bar.dart';
 import 'Search.dart';
 
 class HomeList extends StatefulWidget {
@@ -24,52 +26,54 @@ class _HomeListState extends State<HomeList> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(elevation: 0, actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const SizedBox(width: 30),
-              IconButton(
-                  onPressed: () => gridToList(isList!),
-                  icon: Icon(isList == false
-                      ? Icons.pivot_table_chart
-                      : Icons.grid_view_outlined)),
-              const SizedBox(width: 30),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 50),
-                child: const Text('My Tasks',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    )),
-              ),
-              const SizedBox(width: 20),
-              IconButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => const Search()));
-                  },
-                  icon: const Icon(Icons.search))
-            ],
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                // const SizedBox(width: 30),
+                IconButton(
+                    onPressed: () => gridToList(isList!),
+                    icon: Icon(isList == false
+                        ? Icons.pivot_table_chart
+                        : Icons.grid_view_outlined)),
+                const SizedBox(width: 60),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 100),
+                  child: const Text(AppStrings.titleOfNaveBar,
+                      style: TextStyle(
+                        //fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      )),
+                ),
+                // const SizedBox(width: 20),
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => const Search()));
+                    },
+                    icon: const Icon(Icons.search))
+              ],
+            ),
           )
         ]),
-        body: BodyList(value: isList),
+        body: BodyList(value: isList, isLight: isLight!),
         floatingActionButton: FloatingActionButton(
             shape: const CircleBorder(),
-            child: const Icon(
-              Icons.add,
-            ),
+            child: const Icon(Icons.add),
             onPressed: () {
               showBottomSheet(context);
             }),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: NavBar(isLight: isLight!),
+        bottomNavigationBar: NavBottomBar(isLight: isLight!),
       ),
     );
   }
 
   void gridToList(bool falge) {
     if (falge == true) {
-      BodyList(value: isList);
+      BodyList(
+        value: isList,
+      );
       setState(() {
         isList = false;
       });
@@ -107,16 +111,16 @@ Future<dynamic> showBottomSheet(BuildContext context) {
                 TextField(
                   controller: txTilte,
                   decoration: const InputDecoration(
-                      counterText: 'Todo title',
-                      hintText: 'Todo title..... ',
+                      counterText: AppStrings.firstHintTextOfShowModel,
+                      hintText: AppStrings.secondtHintTextOfShowModel,
                       border: OutlineInputBorder()),
                   textDirection: TextDirection.ltr,
                 ),
                 TextField(
                   controller: txDesc,
                   decoration: const InputDecoration(
-                      counterText: 'Todo title',
-                      hintText: 'Todo title..... ',
+                      counterText: AppStrings.firstHintTextOfShowModel,
+                      hintText: AppStrings.secondtHintTextOfShowModel,
                       border: OutlineInputBorder()),
                   textDirection: TextDirection.ltr,
                 ),
@@ -132,11 +136,11 @@ Future<dynamic> showBottomSheet(BuildContext context) {
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 179, 45, 35),
+                        color: AppThemes.bottomOfShowModel,
                         borderRadius: BorderRadius.circular(90)),
                     child: const Center(
                       child: Text(
-                        'Save',
+                        AppStrings.saveBottom,
                         style: TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 25),
                       ),

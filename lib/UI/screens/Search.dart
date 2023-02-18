@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasks/logic/bloc_export.dart';
 import '../../data/model/Task.dart';
 import '../widgets/task_widget.dart';
 
@@ -11,15 +12,12 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   final searchController = TextEditingController();
-
-  final List<Task> listToSearch = [];
+  final List<Task> listToSearch = const TasksState().allTasks;
   //
-  List<Task> foundedTasks = [
-    Task(id: 'id', title: 'title', description: 'description')
-  ];
+  late List<Task> foundedTasks;
 
   void _runFilter(String enteredKeyword) {
-    List<Task> results = [];
+    late List<Task> results = [];
     if (enteredKeyword.isEmpty) {
       // if the search field is empty or only contains white-space, we'll display all tasks
       results = listToSearch;
@@ -28,14 +26,16 @@ class _SearchState extends State<Search> {
           .where((task) =>
               task.title.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
+      setState(() {});
       // we use the toLowerCase() method to make it case-insensitive
     }
   }
 
   @override
   initState() {
-    foundedTasks = listToSearch;
     super.initState();
+    //foundedTasks = TasksState(allTasks: listToSearch) as List<Task>;
+    foundedTasks = listToSearch;
   }
 
   @override
@@ -45,7 +45,7 @@ class _SearchState extends State<Search> {
         Center(
           child: Container(
               height: 60,
-              width: 380,
+              width: 450,
               margin: const EdgeInsets.all(5),
               child: TextField(
                   onChanged: (value) => _runFilter(value),
@@ -72,10 +72,12 @@ class _SearchState extends State<Search> {
                   itemBuilder: (context, index) {
                     final task = listToSearch[index];
                     return MyWidget1(
-                        description: '${Text(foundedTasks[index].description)}',
-                        id: '${Text(foundedTasks[index].id)}',
-                        titel: '${Text(foundedTasks[index].title)}',
-                        task: task);
+                      description: '${Text(foundedTasks[index].description)}',
+                      id: '${Text(foundedTasks[index].id)}',
+                      titel: '${Text(foundedTasks[index].title)}',
+                      task: task,
+                      isLight: true,
+                    );
                   }))
           : const Center(
               child: Text(
