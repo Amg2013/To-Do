@@ -48,12 +48,14 @@ class _SplashState extends State<Splash> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   // first image
+                  //(Mario) use folder instead of writing comments
                   SizedBox(
                     width: 340,
                     height: 500,
                     child: Image.asset('assets/images/logo.png'),
                   ),
                   // line image
+                  //(Mario) use folder instead of writing comments
                   Container(
                     width: 210,
                     height: 50,
@@ -97,6 +99,7 @@ class _SplashState extends State<Splash> {
                   //),
                 ])),
       ]),
+      //(Mario) why are you using floating action button
       floatingActionButton: FloatingActionButton(
         onPressed: null,
         elevation: 0,

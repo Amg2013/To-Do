@@ -66,7 +66,7 @@ class _HomeListState extends State<HomeList> {
       ),
     );
   }
-
+  //(Mario) Why are you using setState
   void gridToList(bool falge) {
     if (falge == true) {
       BodyList(value: isList);
@@ -81,7 +81,7 @@ class _HomeListState extends State<HomeList> {
     }
   }
 }
-
+//(Mario) Put it in widget folder
 Future<dynamic> showBottomSheet(BuildContext context) {
   TextEditingController txTilte = TextEditingController();
   TextEditingController txDesc = TextEditingController();

@@ -30,18 +30,23 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
+  #(Mario) why are you using dio
   dio: ^4.0.6
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  #(Mario) why are you using flutter_offline
   flutter_offline: ^2.1.0
   hexcolor: ^3.0.1
   hydrated_bloc: ^9.0.0
   path_provider: ^2.0.12
+  #(Mario) why are you using shared_preferences
   shared_preferences: ^2.0.17
+  #(Mario) why are you using spincircle_bottom_bar
   spincircle_bottom_bar: ^2.0.0
   sqflite: ^2.2.4+1
+  #(Mario) why are you using swipeable_button_view
   swipeable_button_view: ^0.0.2
 
 dev_dependencies:

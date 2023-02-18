@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 enum AppTheme { darkTheme, lightTheme }
 
 class AppThemes {
+  //(Mario) why you don't use that
   // static Color mainColor = Colors.white;
   // static Color textColor = const Color(0xffFF0000);
   // static Color contBackColor = const Color(0xffFF4444);

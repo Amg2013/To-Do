@@ -13,7 +13,6 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     on<DeleteingTask>(_onDeleteTask);
     on<CompleteingTasks>(_onCompletingTask);
   }
-
   void _onAddTask(AddingTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(

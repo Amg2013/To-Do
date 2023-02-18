@@ -8,6 +8,7 @@ class SwitchState extends Equatable {
   @override
   List<Object?> get props => [switchValue];
 
+  //(Mario) What's that meaning
   @override
   bool get stringify => true;
 }

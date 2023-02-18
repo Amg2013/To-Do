@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../data/model/Task.dart';
 import '../widgets/task_widget.dart';
 
+//(Mario) why are you using stateFull
 class Search extends StatefulWidget {
   const Search({super.key});
 

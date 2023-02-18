@@ -8,6 +8,7 @@ class NavBar extends StatefulWidget {
 
   NavBar({super.key, required this.isLight});
   @override
+  //(Mario) I can't understand this
   State<NavBar> createState() => _NavBarState();
 }
 
@@ -47,6 +48,7 @@ class _NavBarState extends State<NavBar> {
     );
   }
 
+  //(Mario) add this in bloc
   void changeTheme(bool falge) {
     if (falge == true) {
       context.read<SwitchThemeBloc>().add(Onevent());
