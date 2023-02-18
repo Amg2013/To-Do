@@ -1,18 +1,20 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:tasks/data/model/Task.dart';
+import 'package:tasks/utils/app_theme.dart';
 
 import '../../logic/bloc_export.dart';
 
 class Gridwidget extends StatelessWidget {
+  final bool? isLight;
   final String? titel;
   final String? description;
   final String? id;
   final Task task; //= Task(description: 'sd', id: 'klm', title: 'adsf');
   Gridwidget(
       {super.key,
+      required this.isLight,
       required this.description,
       required this.id,
       required this.titel,
@@ -25,7 +27,9 @@ class Gridwidget extends StatelessWidget {
           width: 200,
           margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: HexColor('#FF4444'),
+            color: isLight == true
+                ? AppThemes.taskWidgetColor
+                : AppThemes.taskWidgetDarkColor,
             shape: BoxShape.rectangle,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
@@ -34,9 +38,9 @@ class Gridwidget extends StatelessWidget {
             children: [
               Text(
                 task.title,
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 20,
-                    color: Colors.white,
+                    color: AppThemes.mainColor,
                     fontWeight: FontWeight.w800),
               ),
               SizedBox(
@@ -72,13 +76,15 @@ class MyWidget1 extends StatelessWidget {
   late final String titel;
   late final String description;
   late final String id;
+  final bool isLight;
   final Task task;
   MyWidget1(
       {super.key,
       required this.description,
       required this.id,
       required this.titel,
-      required this.task});
+      required this.task,
+      required this.isLight});
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TasksBloc, TasksState>(
@@ -88,7 +94,9 @@ class MyWidget1 extends StatelessWidget {
             width: 380,
             margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: HexColor('#FF4444'),
+              color: isLight == true
+                  ? AppThemes.taskWidgetColor
+                  : AppThemes.taskWidgetDarkColor,
               shape: BoxShape.rectangle,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),

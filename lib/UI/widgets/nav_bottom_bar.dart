@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:tasks/UI/widgets/body.dart';
 
 import '../../logic/bloc_export.dart';
 
 // ignore: must_be_immutable, I don't need to make this class immutabel
-class NavBar extends StatefulWidget {
+class NavBottomBar extends StatefulWidget {
   bool isLight = true;
 
-  NavBar({super.key, required this.isLight});
+  NavBottomBar({super.key, required this.isLight});
   @override
-  State<NavBar> createState() => _NavBarState();
+  State<NavBottomBar> createState() => _NavBottomBarState();
 }
 
-class _NavBarState extends State<NavBar> {
+class _NavBottomBarState extends State<NavBottomBar> {
   int index = 0;
   bool? isLight = true;
   @override
@@ -20,10 +21,10 @@ class _NavBarState extends State<NavBar> {
       builder: (context, state) {
         return BottomNavigationBar(
           currentIndex: 0,
-          // selectedItemColor: HexColor("#FF4444").withOpacity(0.7),
+
           selectedLabelStyle:
               const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
-          // unselectedItemColor: AppColors.bottomIconColor,
+
           unselectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 14,
@@ -50,13 +51,16 @@ class _NavBarState extends State<NavBar> {
   void changeTheme(bool falge) {
     if (falge == true) {
       context.read<SwitchThemeBloc>().add(Onevent());
+
       setState(() {
         isLight = false;
+        BodyList(isLight: false);
       });
     } else {
       context.read<SwitchThemeBloc>().add(Offevent());
       setState(() {
         isLight = true;
+        BodyList(isLight: true);
       });
     }
   }

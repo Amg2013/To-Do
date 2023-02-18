@@ -8,9 +8,11 @@ import '../../logic/bloc_export.dart';
 class BodyList extends StatelessWidget {
   Task? task;
   bool? value;
+  bool? isLight;
   BodyList({
     this.value,
     Key? key,
+    this.isLight,
   }) : super(key: key);
 
   @override
@@ -39,10 +41,12 @@ class BodyList extends StatelessWidget {
                             itemBuilder: (context, int index) {
                               var task = taskList[index];
                               return MyWidget1(
-                                  task: task,
-                                  description: task.description,
-                                  id: task.id,
-                                  titel: task.title);
+                                task: task,
+                                description: task.description,
+                                id: task.id,
+                                titel: task.title,
+                                isLight: isLight!,
+                              );
                             },
                           )
                         : GridView.builder(
@@ -54,10 +58,12 @@ class BodyList extends StatelessWidget {
                             itemBuilder: (context, int index) {
                               var task = taskList[index];
                               return Gridwidget(
-                                  task: task,
-                                  description: task.description,
-                                  id: task.id,
-                                  titel: task.title);
+                                task: task,
+                                description: task.description,
+                                id: task.id,
+                                titel: task.title,
+                                isLight: isLight,
+                              );
                             },
                           )),
               ],
