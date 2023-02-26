@@ -2,7 +2,6 @@ part of 'switch_them_bloc.dart';
 
 class SwitchState extends Equatable {
   final bool switchValue;
-
   const SwitchState({required this.switchValue});
 
   @override

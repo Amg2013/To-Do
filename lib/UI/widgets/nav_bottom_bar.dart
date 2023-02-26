@@ -1,20 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:tasks/UI/widgets/body.dart';
 
 import '../../logic/bloc_export.dart';
+import 'body.dart';
 
 // ignore: must_be_immutable, I don't need to make this class immutabel
-class NavBottomBar extends StatefulWidget {
-  bool isLight = true;
+class NavBottomBar extends StatelessWidget {
+  NavBottomBar({super.key});
 
-  NavBottomBar({super.key, required this.isLight});
-  @override
-  State<NavBottomBar> createState() => _NavBottomBarState();
-}
-
-class _NavBottomBarState extends State<NavBottomBar> {
   int index = 0;
-  bool? isLight = true;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchThemeBloc, SwitchState>(
@@ -31,9 +26,13 @@ class _NavBottomBarState extends State<NavBottomBar> {
           ),
           elevation: 0,
           showSelectedLabels: false,
-          // var value = true ,
-          onTap: (index) => changeTheme(isLight!),
-
+          // why??
+          onTap: (index) {
+            //context.read<SwitchThemeBloc>().add(ChangeTheme());
+            context.read<SwitchThemeBloc>().add(Onevent());
+            SwitchThemeBloc.setTheme();
+            const SwitchState(switchValue: true);
+          },
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -48,20 +47,21 @@ class _NavBottomBarState extends State<NavBottomBar> {
     );
   }
 
-  void changeTheme(bool falge) {
-    if (falge == true) {
-      context.read<SwitchThemeBloc>().add(Onevent());
-
-      setState(() {
-        isLight = false;
-        BodyList(isLight: false);
-      });
-    } else {
-      context.read<SwitchThemeBloc>().add(Offevent());
-      setState(() {
-        isLight = true;
-        BodyList(isLight: true);
-      });
-    }
-  }
+  // void changeTheme(bool falge) {
+  //   if (falge == true) {
+  //     context.read<SwitchThemeBloc>().add(Onevent());
+  //     const SwitchState(switchValue: false);
+  //     setState(() {
+  //       isLight = false;
+  //       BodyList(isLight: false);
+  //     });
+  //   } else {
+  //     context.read<SwitchThemeBloc>().add(Offevent());
+  //     const SwitchState(switchValue: true);
+  //     setState(() {
+  //       isLight = true;
+  //       BodyList(isLight: true);
+  //     });
+  //   }
+  // }
 }

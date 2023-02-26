@@ -7,3 +7,5 @@ class SwitchEvent {
 class Onevent extends SwitchEvent {}
 
 class Offevent extends SwitchEvent {}
+
+class ChangeTheme extends SwitchEvent {}

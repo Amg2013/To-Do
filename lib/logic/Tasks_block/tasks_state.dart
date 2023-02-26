@@ -2,7 +2,13 @@
 
 part of 'tasks_bloc.dart';
 
-class TasksState extends Equatable {
+abstract class MainTaskState extends Equatable {
+  const MainTaskState();
+  @override
+  List<Object> get props => [];
+}
+
+class TasksState extends MainTaskState {
   final List<Task> allTasks;
   final List<Task> completedTasks;
   final List<Task> deleteTasks;
@@ -45,9 +51,32 @@ class TasksState extends Equatable {
   bool get stringify => true;
 }
 
-class LoadedTasksState extends Equatable {
-  List<Task>? loadTasks;
+class FoundedTasksState extends MainTaskState {
+  List<Task>? loadTasksList = const TasksState().allTasks;
+  late Task task;
+  late String? enterdWord;
+  FoundedTasksState({this.loadTasksList});
 
-  @override
-  List<Object?> get props => [LoadedTasksState];
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'loadTasksList': loadTasksList!.map((x) => x.toMap()).toList(),
+    };
+  }
+
+  factory FoundedTasksState.fromMap(Map<String, dynamic> map) {
+    return FoundedTasksState(
+      loadTasksList: map['loadTasksList'] != null
+          ? List<Task>.from(
+              (map['loadTasksList'] as List<dynamic>).map<Task?>(
+                (x) => Task.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory FoundedTasksState.fromJson(String source) =>
+      FoundedTasksState.fromMap(json.decode(source) as Map<String, dynamic>);
 }

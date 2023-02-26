@@ -54,7 +54,7 @@ class Gridwidget extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () => context.read<TasksBloc>()
-                        ..add(CompleteingTasks(task: task)),
+                        ..add(CompleteTasks(task: task)),
                       icon: Icon(task.isDone == false
                           ? Icons.check_box_outline_blank_sharp
                           : Icons.check_box_outlined)),
@@ -104,8 +104,8 @@ class MyWidget1 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  onPressed: () => context.read<TasksBloc>()
-                    ..add(CompleteingTasks(task: task)),
+                  onPressed: () =>
+                      context.read<TasksBloc>()..add(CompleteTasks(task: task)),
                   icon: Icon(task.isDone == false
                       ? Icons.check_box_outline_blank_sharp
                       : Icons.check_box_outlined),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasks/utils/constantes.dart';
 import 'task_widget.dart';
 
 import '../../data/model/Task.dart';
@@ -26,9 +27,9 @@ class BodyList extends StatelessWidget {
               children: [
                 Container(
                     margin:
-                        const EdgeInsets.only(right: 100, top: 20, bottom: 30),
+                        const EdgeInsets.only(right: 120, top: 20, bottom: 30),
                     child: const Text(
-                      'What is new ?',
+                      AppStrings.hiderInHome,
                       style: TextStyle(
                         fontSize: 30,
                       ),
