@@ -26,7 +26,8 @@ class AppLocalizations {
   late Map<String, String> _localizedStrings;
 // this to get value if while it't null
 // this will tranalate based on key if there is no key it will retrun null
-  String? translate(String key) {
+
+  String translate(String key) {
     return _localizedStrings[key] ?? 'someErorrInTreanslateFun';
   }
 
@@ -41,7 +42,7 @@ class AppLocalizations {
     // here i used dynamic as key not string althought I now the key is dynamic
     //but this better for dart in order not go into crach
     Map<String, dynamic> jsonMap = json.decode(encodeString);
-    debugPrint(encodeString);
+    // debugPrint(encodeString);
     // here i retrurn the key to string agine
     _localizedStrings =
         jsonMap.map((key, value) => MapEntry(key, value.toString()));
@@ -75,6 +76,6 @@ class _AppLocalizationsDelegate
 // solid pren number two open-cloesd open for extension not for modefiction
 extension TranslateString on String {
   String tr(BuildContext context) {
-    return AppLocalizations.of(context).translate(this)!;
+    return AppLocalizations.of(context)!.translate(this);
   }
 }

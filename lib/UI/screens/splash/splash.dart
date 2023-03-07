@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:tasks/utils/app_theme.dart';
-import 'package:tasks/utils/constantes.dart';
-import 'home_list.dart';
+import 'package:tasks/config/themes/app_theme.dart';
+import 'package:tasks/utils/app_strings.dart';
+import '../../../config/locale/app_locale.dart';
+import '../home/home_list.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -34,8 +35,7 @@ class _SplashState extends State<Splash> {
           backgroundColor: AppThemes.splashColor,
           elevation: 0,
           title: Text(
-            'My Tasks',
-            // AppLocalizations.of(context).translate("myTasksSplash")!,
+            'myTasksSplash'.tr(context),
             style: TextStyle(
                 color: AppThemes.mainColor, fontWeight: FontWeight.w700),
           ),
@@ -69,11 +69,11 @@ class _SplashState extends State<Splash> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(AppStrings.hiderTitleOneONSplash,
+                            Text('hiderTitleOneONSplash'.tr(context),
                                 style: TextStyle(
                                     color: AppThemes.mainColor,
                                     fontWeight: FontWeight.w300)),
-                            Text(AppStrings.hiderTitleTwoOnSplash,
+                            Text('hiderTitleTwoOnSplash'.tr(context),
                                 style: TextStyle(
                                     color: AppThemes.mainColor,
                                     fontWeight: FontWeight.w500))
@@ -93,7 +93,7 @@ class _SplashState extends State<Splash> {
                   ])),
         ]),
         floatingActionButton: FloatingActionButton(
-          onPressed: null,
+          onPressed: () {},
           elevation: 0,
           backgroundColor: AppThemes.splashColor,
           foregroundColor: null,
@@ -102,21 +102,4 @@ class _SplashState extends State<Splash> {
       )
     ]);
   }
-
-  // void onFinish() async {
-  //   await Navigator.push(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (context) => HomeList(),
-  //       ));
-  // }
-
-  // void onWaitingProcess() {
-  //   Future.delayed(const Duration(seconds: 1), () {
-  //     setState(() {
-  //       isfinshed = true;
-  //     });
-
-  //   });
-
 }

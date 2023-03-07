@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tasks/data/model/Task.dart';
-import 'package:tasks/utils/app_theme.dart';
+import 'package:tasks/config/themes/app_theme.dart';
 
 import '../../logic/bloc_export.dart';
 

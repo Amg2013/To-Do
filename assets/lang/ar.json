@@ -1,10 +1,15 @@
 {
    "myTasksSplash" :  "مهامي " ,
+
+   "whatisnew" :  "الكلام علي ايه " ,
     "hiderTitleOneONSplash"  :  "مثابرة                "   ,
     "hiderTitleTwoOnSplash"  :  "                   جيده" ,
     "MyTasksONAppBar"  :  "مهامي" ,
     "firstHintTextOfShowModel"  :  "اسم المهمة " ,
     "secondtHintTextOfShowModel"  :  "اسم المهمة..... " ,
     "saveBottom"  :  "حفظ" ,
-    "someErorrInTreanslateFun"  :  "someErorrInTreanslateFun "
+    "theme" :  "الالون " ,
+    "search" :  "بحث" ,
+    "nothingfind" : "لا يوجد شئ",
+    "someErorrInTreanslateFun"  :  "خطاء في الترجمة  "
 }

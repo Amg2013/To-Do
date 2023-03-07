@@ -1,19 +1,19 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:tasks/config/locale/app_locale.dart';
 import 'package:tasks/logic/bloc_export.dart';
 import '../../data/model/Task.dart';
 import '../widgets/task_widget.dart';
 
 class Search extends StatelessWidget {
   Search({super.key});
-
   final searchController = TextEditingController();
-  List<Task> listToSearch = TasksState().allTasks;
-  late List<Task> foundedTasks = listToSearch;
+  late List<Task> listToSearch;
+  late List<Task> foundedTasks;
 
   void _runFilter(String enteredKeyword) {
-    late List<Task> results = [];
+    late List<Task> results;
     if (enteredKeyword.isEmpty) {
       // if the search field is empty or only contains white-space, we'll display all tasks
       results = listToSearch;
@@ -22,13 +22,11 @@ class Search extends StatelessWidget {
           .where((task) =>
               task.title.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
-      // setState(() {});
-      // we use the toLowerCase() method to make it case-insensitive
     }
   }
 
   // @override
-  // initState() {
+  //initState() {
   //   super.initState();
   //   listToSearch = const TasksState().allTasks;
   //   foundedTasks = listToSearch;
@@ -38,13 +36,15 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return (BlocBuilder<TasksBloc, TasksState>(
       builder: (context, state) {
+        listToSearch = state.allTasks;
+        foundedTasks = listToSearch;
         return Scaffold(
           appBar:
               AppBar(automaticallyImplyLeading: false, elevation: 0, actions: [
-            Center(
+            Flexible(
+              fit: FlexFit.loose,
               child: Container(
                   height: 60,
-                  width: 450,
                   margin: const EdgeInsets.all(5),
                   child: TextField(
                       onChanged: (value) => _runFilter(value),
@@ -55,7 +55,7 @@ class Search extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                               icon: const Icon(Icons.cancel_outlined)),
-                          labelText: 'search',
+                          labelText: 'search'.tr(context),
                           suffixIcon: const Icon(Icons.search_sharp),
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -82,10 +82,10 @@ class Search extends StatelessWidget {
                             );
                           })),
                 )
-              : const Center(
+              : Center(
                   child: Text(
-                  'no thing find',
-                  style: TextStyle(fontSize: 24),
+                  'nothingfind'.tr(context),
+                  style: const TextStyle(fontSize: 24),
                 )),
         );
       },
