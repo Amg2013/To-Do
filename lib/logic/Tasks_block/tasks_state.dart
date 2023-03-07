@@ -1,8 +1,14 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: must_be_immutable
 
 part of 'tasks_bloc.dart';
 
-class TasksState extends Equatable {
+abstract class MainTaskState extends Equatable {
+  const MainTaskState();
+  @override
+  List<Object> get props => [];
+}
+
+class TasksState extends MainTaskState {
   final List<Task> allTasks;
   final List<Task> completedTasks;
   final List<Task> deleteTasks;
@@ -27,25 +33,50 @@ class TasksState extends Equatable {
   factory TasksState.fromMap(Map<String, dynamic> map) {
     return TasksState(
       allTasks: List<Task>.from(
-        (map['allTasks'] as List<int>).map<Task>(
-          (x) => Task.fromMap(x as Map<String, dynamic>),
+        map['allTasks']?.map<Task>(
+          (x) => Task.fromMap(x),
         ),
       ),
       completedTasks: List<Task>.from(
-        (map['completedTasks'] as List<int>).map<Task>(
-          (x) => Task.fromMap(x as Map<String, dynamic>),
+        (map['completedTasks'])?.map<Task>(
+          (x) => Task.fromMap(x),
         ),
       ),
-      deleteTasks: List<Task>.from(
-        (map['DeleteTasks'] as List<int>).map<Task>(
-          (x) => Task.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      deleteTasks: List<Task>.from((map['DeleteTasks'] as List<dynamic>)
+          .map<Task>((x) => Task.fromMap(x as Map<String, dynamic>))),
+    );
+  }
+
+  @override
+  bool get stringify => true;
+}
+
+class FoundedTasksState extends MainTaskState {
+  List<Task>? loadTasksList = const TasksState().allTasks;
+  late Task task;
+  late String? enterdWord;
+  FoundedTasksState({this.loadTasksList});
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'loadTasksList': loadTasksList!.map((x) => x.toMap()).toList(),
+    };
+  }
+
+  factory FoundedTasksState.fromMap(Map<String, dynamic> map) {
+    return FoundedTasksState(
+      loadTasksList: map['loadTasksList'] != null
+          ? List<Task>.from(
+              (map['loadTasksList'] as List<dynamic>).map<Task?>(
+                (x) => Task.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory TasksState.fromJson(String source) =>
-      TasksState.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory FoundedTasksState.fromJson(String source) =>
+      FoundedTasksState.fromMap(json.decode(source) as Map<String, dynamic>);
 }

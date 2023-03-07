@@ -1,17 +1,19 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
-import 'package:tasks/UI/widgets/task_widget.dart';
+import 'package:tasks/config/locale/app_locale.dart';
+import '../../../widgets/task_widget.dart';
 
-import '../../data/model/Task.dart';
-import '../../logic/Bloc_export.dart';
+import '../../../../data/model/Task.dart';
+import '../../../../logic/bloc_export.dart';
 
+// ignore: must_be_immutable
 class BodyList extends StatelessWidget {
   Task? task;
-  bool? Value;
+  bool? value;
+  bool? isLight;
   BodyList({
-    this.Value,
+    this.value,
     Key? key,
+    this.isLight,
   }) : super(key: key);
 
   @override
@@ -25,40 +27,44 @@ class BodyList extends StatelessWidget {
               children: [
                 Container(
                     margin:
-                        const EdgeInsets.only(right: 100, top: 20, bottom: 30),
-                    child: const Text(
-                      'What is new ?',
-                      style: TextStyle(
+                        const EdgeInsets.only(right: 120, top: 20, bottom: 30),
+                    child: Text(
+                      'whatisnew'.tr(context),
+                      style: const TextStyle(
                         fontSize: 30,
                       ),
                     )),
                 Expanded(
-                    child: Value == false
+                    child: value == false
                         ? ListView.builder(
                             shrinkWrap: true,
                             itemCount: taskList.length,
                             itemBuilder: (context, int index) {
                               var task = taskList[index];
                               return MyWidget1(
-                                  task: task,
-                                  description: task.description,
-                                  id: task.id,
-                                  titel: task.title);
+                                task: task,
+                                description: task.description,
+                                id: task.id,
+                                titel: task.title,
+                                isLight: isLight!,
+                              );
                             },
                           )
                         : GridView.builder(
                             gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
                                     maxCrossAxisExtent: 300),
                             shrinkWrap: true,
                             itemCount: taskList.length,
                             itemBuilder: (context, int index) {
                               var task = taskList[index];
-                              return Grid_widget(
-                                  task: task,
-                                  description: task.description,
-                                  id: task.id,
-                                  titel: task.title);
+                              return Gridwidget(
+                                task: task,
+                                description: task.description,
+                                id: task.id,
+                                titel: task.title,
+                                isLight: isLight,
+                              );
                             },
                           )),
               ],

@@ -1,8 +1,6 @@
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-// ignore: must_be_immutable
+// ignore: must_be_immutable, I don't need to make this class immutabel
 class Task extends Equatable {
   final String id;
   final String title;
@@ -60,17 +58,11 @@ class Task extends Equatable {
 
   factory Task.fromMap(Map<String, dynamic> map) {
     return Task(
-      id: map['id'] as String,
-      title: map['title'] as String,
-      description: map['description'] as String,
+      id: map['id'] ?? '',
+      title: map['title'] ?? '',
+      description: map['description'] ?? '',
       isDone: map['isDone'] != null ? map['isDone'] as bool : null,
       isDeleted: map['isDeleted'] != null ? map['isDeleted'] as bool : null,
     );
   }
 }
-
-// List<Task> ListData = [
-//   Task(title: "sddf", content: "dsf", id: "90"),
-//   Task(title: 'beshoy ', content: 'content', id: '91'),
-//   Task(title: 'amg', content: 'content', id: '92'),
-// ];

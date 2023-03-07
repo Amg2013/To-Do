@@ -1,10 +1,10 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:tasks/UI/screens/ListTasks.dart';
-import 'package:tasks/UI/widgets/body.dart';
-import 'package:tasks/UI/widgets/task_widget.dart';
-import 'package:tasks/data/model/Task.dart';
+import 'package:tasks/config/locale/app_locale.dart';
+import 'package:tasks/logic/bloc_export.dart';
+import '../../data/model/Task.dart';
+import '../widgets/task_widget.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -15,53 +15,94 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   final searchController = TextEditingController();
-  late List<Task> listToSearch = [
-    Task(id: 'id', title: 'title', description: 'descrap'),
-  ];
+
+  late List<Task> listToSearch;
+
+  List<Task> listOfReslts = [];
+
+  void _runFilter(String enteredKeyword) {
+    late List<Task> results;
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all tasks
+      results = listToSearch;
+    } else {
+      results = listToSearch
+          .where((task) =>
+              task.title.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+      setState(() {
+        listOfReslts = results;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return (Scaffold(
-      appBar: AppBar(elevation: 0, flexibleSpace: Row(), actions: [
-        Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.cancel_outlined)),
-            Container(
-              height: 60,
-              width: 380,
-              margin: const EdgeInsets.all(5),
-              child: TextField(
-                controller: searchController,
-                autofocus: true,
-                decoration: const InputDecoration(
-                    labelText: 'search',
-                    suffixIcon: Icon(Icons.search_sharp),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                    )),
-              ),
+    return (BlocBuilder<TasksBloc, TasksState>(
+      builder: (context, state) {
+        listToSearch = state.allTasks;
+        // listOfReslts = listToSearch;
+        debugPrint(listToSearch.length.toString());
+        return Scaffold(
+          appBar:
+              AppBar(automaticallyImplyLeading: false, elevation: 0, actions: [
+            Flexible(
+              fit: FlexFit.loose,
+              child: Container(
+                  height: 60,
+                  margin: const EdgeInsets.all(5),
+                  child: TextField(
+                      onChanged: (value) => _runFilter(value),
+                      autofocus: true,
+                      decoration: InputDecoration(
+                          prefixIcon: IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.cancel_outlined)),
+                          // labelText: 'search'.tr(context),
+                          suffixIcon: const Icon(Icons.search_sharp),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                          )))),
             ),
-          ],
-        ),
-      ]),
-      body: Container(
-        height: double.infinity,
-        margin: const EdgeInsets.all(20),
-        child: ListView.builder(
-            itemCount: listToSearch.length,
-            itemBuilder: (context, index) {
-              final task = listToSearch[index];
-              return MyWidget1(
-                  description: task.description,
-                  id: task.id,
-                  titel: task.title,
-                  task: task);
-            }),
-      ),
+          ]),
+          body: listOfReslts.isNotEmpty
+              ? Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      margin: const EdgeInsets.all(20),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: listOfReslts.length,
+                          itemBuilder: (context, int index) {
+                            var task = listOfReslts[index];
+                            return Gridwidget(
+                              task: task,
+                              description: task.description,
+                              id: task.id,
+                              titel: task.title,
+                              isLight: true,
+                            );
+                            // return MyWidget1(
+                            //   description:
+                            //       '${Text(foundedTasks[index].description)}',
+                            //   id: '${Text(foundedTasks[index].id)}',
+                            //   titel: '${Text(foundedTasks[index].title)}',
+                            //   task: task,
+                            //   isLight: true,
+                            // );
+                          })),
+                )
+              : Center(
+                  child: Text(
+                  'nothingfind'.tr(context),
+                  style: const TextStyle(fontSize: 24),
+                )),
+        );
+      },
     ));
   }
 }

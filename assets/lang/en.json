@@ -1,0 +1,14 @@
+{
+    "myTasksSplash" :  "My Tasks " ,
+    "hiderTitleOneONSplash"  :  "Good                      " ,
+    "hiderTitleTwoOnSplash"  :  "          Consitancy " ,
+    "MyTasksONAppBar"  :  "My Tasks " ,
+    "firstHintTextOfShowModel"  :  "Todo tilte " ,
+    "secondtHintTextOfShowModel"  :  "Todo title..... " ,
+    "saveBottom"  :  "Save " ,
+    "theme" :"theme",
+    "search" :  "search" ,
+    "whatisnew" :  "What is new" ,
+    "nothingfind" : "no thing find",
+    "someErorrInTreanslateFun"  :  "someErorrInTreanslateFun " 
+}

@@ -1,42 +1,42 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'tasks_bloc.dart';
 
 abstract class TasksEvent extends Equatable {
   const TasksEvent();
-
   @override
   List<Object> get props => [];
 }
 
 class AddTask extends TasksEvent {
   final Task task;
-
-  const AddTask({
-    required this.task,
-  });
+  const AddTask({required this.task});
 
   @override
   List<Object> get props => [task];
 }
 
-class CompletedTasks extends TasksEvent {
+class CompleteTasks extends TasksEvent {
   final Task task;
 
-  const CompletedTasks({
-    required this.task,
-  });
+  const CompleteTasks({required this.task});
 
   @override
   List<Object> get props => [task];
 }
 
-class DeleteTask extends TasksEvent {
+class DeleteingTask extends TasksEvent {
   final Task task;
 
-  const DeleteTask({
-    required this.task,
-  });
+  const DeleteingTask({required this.task});
 
   @override
   List<Object> get props => [task];
+}
+
+class SearchOnTasksList extends TasksEvent {
+  final List<Task> allLoadedTasks;
+  final Task task;
+  const SearchOnTasksList(this.task, {required this.allLoadedTasks});
+
+  @override
+  List<Object> get props => [allLoadedTasks];
 }
