@@ -1,4 +1,4 @@
-import '../../../logic/bloc_export.dart';
+import '../Bloc_export.dart';
 import 'list_grid_state.dart';
 
 class ListToGrideCubit extends Cubit<ListToGrideState> {

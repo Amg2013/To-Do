@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tasks/UI/screens/home/home_list.dart';
-import 'package:tasks/UI/screens/search.dart';
-import 'package:tasks/UI/screens/splash/splash.dart';
+import '../../UI/screens/home/home_list.dart';
+import '../../UI/screens/search/Search.dart';
+import '../../UI/screens/splash/splash.dart';
 
 import '../constants/constnts.dart';
 

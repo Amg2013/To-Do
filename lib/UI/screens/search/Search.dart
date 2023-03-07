@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:tasks/config/locale/app_locale.dart';
-import 'package:tasks/logic/bloc_export.dart';
-import '../../data/model/Task.dart';
-import '../widgets/task_widget.dart';
+
+import '../../../data/model/Task.dart';
+import '../../blocs/Bloc_export.dart';
+import '../../widgets/task_widget.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});

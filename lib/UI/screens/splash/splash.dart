@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:tasks/config/themes/app_theme.dart';
-import 'package:tasks/utils/app_strings.dart';
+import '../../../config/themes/app_theme.dart';
+import '../../../utils/app_strings.dart';
 import '../../../config/locale/app_locale.dart';
 import '../home/home_list.dart';
 

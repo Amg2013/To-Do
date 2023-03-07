@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import '../bloc_export.dart';
-import '../helpers/cash.dart';
+
+import '../Bloc_export.dart';
+import '../../../logic/helpers/cash.dart';
+
 part 'locale_cubit_state.dart';
 
 class LocaleCubit extends Cubit<LocaleState> {

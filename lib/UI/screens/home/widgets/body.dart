@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tasks/config/locale/app_locale.dart';
+import '../../../../config/locale/app_locale.dart';
+import '../../../blocs/Bloc_export.dart';
 import '../../../widgets/task_widget.dart';
 
 import '../../../../data/model/Task.dart';
-import '../../../../logic/bloc_export.dart';
 
 // ignore: must_be_immutable
 class BodyList extends StatelessWidget {

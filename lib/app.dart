@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tasks/UI/cubit/switch_theme_cubit.dart';
-import 'package:tasks/config/constants/constnts.dart';
-import 'package:tasks/config/routes/app_routs.dart';
-import 'package:tasks/logic/bloc_export.dart';
-import 'package:tasks/config/locale/app_locale.dart';
+
+import 'UI/blocs/Bloc_export.dart';
+import 'UI/blocs/switch_theme_cubit/switch_theme_cubit.dart';
 import 'UI/screens/splash/splash.dart';
+import 'config/constants/constnts.dart';
+import 'config/locale/app_locale.dart';
+import 'config/routes/app_routs.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

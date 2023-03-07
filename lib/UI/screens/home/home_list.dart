@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tasks/UI/blocs/list_grid_cubit/list_grid_state.dart';
-import 'package:tasks/config/routes/app_routs.dart';
-import 'package:tasks/config/themes/app_theme.dart';
-import '../../../data/model/Task.dart';
-import '../../../logic/bloc_export.dart';
+
 import '../../../config/locale/app_locale.dart';
+import '../../../config/routes/app_routs.dart';
+import '../../../config/themes/app_theme.dart';
+import '../../../data/model/Task.dart';
+import '../../blocs/Bloc_export.dart';
 import '../../blocs/list_grid_cubit/list_gird_cubit.dart';
+import '../../blocs/list_grid_cubit/list_grid_state.dart';
+import 'widgets/app_bar.dart';
 import 'widgets/body.dart';
 import 'widgets/nav_bottom_bar.dart';
 
@@ -30,67 +32,14 @@ class HomeList extends StatelessWidget {
       child: BlocBuilder<ListToGrideCubit, ListToGrideState>(
         builder: (context, state) {
           return Scaffold(
+            // drawer: Drawer(
+            //   backgroundColor: AppThemes.splashColor,
+            // ),
             appBar: AppBar(
                 automaticallyImplyLeading: false,
                 elevation: 0,
-                actions: [
-                  Flexible(
-                    fit: FlexFit.loose,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        // const SizedBox(width: 30),
-
-                        IconButton(
-                            onPressed: () =>
-                                context.read<ListToGrideCubit>().changeStyle(),
-                            icon: Icon(state.isList == false
-                                ? Icons.pivot_table_chart
-                                : Icons.grid_view_outlined)),
-
-                        SizedBox(
-                            child: TextButton(
-                                onPressed: () {
-                                  BlocProvider.of<LocaleCubit>(context)
-                                      .cahngeLanguage('en');
-                                  AppLocalizations(locale: const Locale('en'))
-                                      .isEnglish();
-                                },
-                                child: Text('en',
-                                    style: TextStyle(
-                                        color: AppThemes.splashColor,
-                                        fontSize: 16)))),
-
-                        /// secd button
-                        SizedBox(
-                            child: TextButton(
-                                onPressed: () {
-                                  BlocProvider.of<LocaleCubit>(context)
-                                      .cahngeLanguage('ar');
-                                  AppLocalizations(locale: const Locale('ar'))
-                                      .isEnglish();
-                                },
-                                child: Text('ar',
-                                    style: TextStyle(
-                                        color: AppThemes.splashColor,
-                                        fontSize: 16)))),
-
-                        Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 60),
-                          child: Text(
-                              //'My Tasks',
-                              'MyTasksONAppBar'.tr(context),
-                              style: const TextStyle(fontSize: 25)),
-                        ),
-
-                        IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamed(Routes.search);
-                            },
-                            icon: const Icon(Icons.search))
-                      ],
-                    ),
-                  ),
+                actions: const [
+                  HomeAppBar(),
                 ]),
 
             // this for body

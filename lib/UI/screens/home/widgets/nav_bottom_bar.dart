@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tasks/config/locale/app_locale.dart';
-import '../../../cubit/switch_theme_cubit.dart';
-import '../../../../logic/bloc_export.dart';
+import 'package:tasks/UI/blocs/Bloc_export.dart';
+import '../../../../config/locale/app_locale.dart';
+import '../../../blocs/switch_theme_cubit/switch_theme_cubit.dart';
 
 // ignore: must_be_immutable, I don't need to make this class immutabel
 class NavBottomBar extends StatelessWidget {
