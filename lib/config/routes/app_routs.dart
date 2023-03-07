@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasks/UI/screens/home/home_list.dart';
 import 'package:tasks/UI/screens/search.dart';
-import 'package:tasks/UI/screens/search/search1.dart';
 import 'package:tasks/UI/screens/splash/splash.dart';
 
 import '../constants/constnts.dart';
@@ -20,7 +19,7 @@ class AppRoutes {
       case Routes.home:
         return MaterialPageRoute(builder: (context) => HomeList());
       case Routes.search:
-        return MaterialPageRoute(builder: (context) => Search());
+        return MaterialPageRoute(builder: (context) => const Search());
       default:
         return undefinedRoute();
     }

@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tasks/UI/blocs/list_grid_cubit/list_grid_state.dart';
 import 'package:tasks/config/routes/app_routs.dart';
 import 'package:tasks/config/themes/app_theme.dart';
-import 'package:tasks/utils/app_strings.dart';
 import '../../../data/model/Task.dart';
 import '../../../logic/bloc_export.dart';
 import '../../../config/locale/app_locale.dart';
 import '../../blocs/list_grid_cubit/list_gird_cubit.dart';
 import 'widgets/body.dart';
 import 'widgets/nav_bottom_bar.dart';
-import '../Search.dart';
-
-import 'dart:developer' as dev;
 
 // ignore: must_be_immutable
 class HomeList extends StatelessWidget {
@@ -57,8 +53,8 @@ class HomeList extends StatelessWidget {
                                 onPressed: () {
                                   BlocProvider.of<LocaleCubit>(context)
                                       .cahngeLanguage('en');
-                                  AppLocalizations(locale: Locale('en'))
-                                      .IsEnglish();
+                                  AppLocalizations(locale: const Locale('en'))
+                                      .isEnglish();
                                 },
                                 child: Text('en',
                                     style: TextStyle(
@@ -71,8 +67,8 @@ class HomeList extends StatelessWidget {
                                 onPressed: () {
                                   BlocProvider.of<LocaleCubit>(context)
                                       .cahngeLanguage('ar');
-                                  AppLocalizations(locale: Locale('ar'))
-                                      .IsEnglish();
+                                  AppLocalizations(locale: const Locale('ar'))
+                                      .isEnglish();
                                 },
                                 child: Text('ar',
                                     style: TextStyle(

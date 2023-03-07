@@ -6,11 +6,19 @@ import 'package:tasks/logic/bloc_export.dart';
 import '../../data/model/Task.dart';
 import '../widgets/task_widget.dart';
 
-class Search extends StatelessWidget {
-  Search({super.key});
+class Search extends StatefulWidget {
+  const Search({super.key});
+
+  @override
+  State<Search> createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
   final searchController = TextEditingController();
+
   late List<Task> listToSearch;
-  late List<Task> foundedTasks;
+
+  List<Task> listOfReslts = [];
 
   void _runFilter(String enteredKeyword) {
     late List<Task> results;
@@ -18,26 +26,23 @@ class Search extends StatelessWidget {
       // if the search field is empty or only contains white-space, we'll display all tasks
       results = listToSearch;
     } else {
-      results = foundedTasks
+      results = listToSearch
           .where((task) =>
               task.title.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
+      setState(() {
+        listOfReslts = results;
+      });
     }
   }
-
-  // @override
-  //initState() {
-  //   super.initState();
-  //   listToSearch = const TasksState().allTasks;
-  //   foundedTasks = listToSearch;
-  // }
 
   @override
   Widget build(BuildContext context) {
     return (BlocBuilder<TasksBloc, TasksState>(
       builder: (context, state) {
         listToSearch = state.allTasks;
-        foundedTasks = listToSearch;
+        // listOfReslts = listToSearch;
+        debugPrint(listToSearch.length.toString());
         return Scaffold(
           appBar:
               AppBar(automaticallyImplyLeading: false, elevation: 0, actions: [
@@ -55,31 +60,40 @@ class Search extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                               icon: const Icon(Icons.cancel_outlined)),
-                          labelText: 'search'.tr(context),
+                          // labelText: 'search'.tr(context),
                           suffixIcon: const Icon(Icons.search_sharp),
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                           )))),
             ),
           ]),
-          body: foundedTasks.isNotEmpty
-              ? Expanded(
+          body: listOfReslts.isNotEmpty
+              ? Padding(
+                  padding: const EdgeInsets.all(10),
                   child: Container(
                       width: double.infinity,
                       height: double.infinity,
                       margin: const EdgeInsets.all(20),
                       child: ListView.builder(
-                          itemCount: listToSearch.length,
-                          itemBuilder: (context, index) {
-                            final task = listToSearch[index];
-                            return MyWidget1(
-                              description:
-                                  '${Text(foundedTasks[index].description)}',
-                              id: '${Text(foundedTasks[index].id)}',
-                              titel: '${Text(foundedTasks[index].title)}',
+                          shrinkWrap: true,
+                          itemCount: listOfReslts.length,
+                          itemBuilder: (context, int index) {
+                            var task = listOfReslts[index];
+                            return Gridwidget(
                               task: task,
+                              description: task.description,
+                              id: task.id,
+                              titel: task.title,
                               isLight: true,
                             );
+                            // return MyWidget1(
+                            //   description:
+                            //       '${Text(foundedTasks[index].description)}',
+                            //   id: '${Text(foundedTasks[index].id)}',
+                            //   titel: '${Text(foundedTasks[index].title)}',
+                            //   task: task,
+                            //   isLight: true,
+                            // );
                           })),
                 )
               : Center(

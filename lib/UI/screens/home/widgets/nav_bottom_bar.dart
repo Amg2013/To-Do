@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasks/config/locale/app_locale.dart';
 import '../../../cubit/switch_theme_cubit.dart';
-import 'dart:developer' as dev;
 import '../../../../logic/bloc_export.dart';
 
 // ignore: must_be_immutable, I don't need to make this class immutabel
@@ -26,8 +25,8 @@ class NavBottomBar extends StatelessWidget {
         cubit.changeTheme();
       },
       items: [
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.home),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.home),
           label: "Home",
         ),
         BottomNavigationBarItem(

@@ -31,7 +31,7 @@ class AppLocalizations {
     return _localizedStrings[key] ?? 'someErorrInTreanslateFun';
   }
 
-  bool IsEnglish() => locale == Locale('en');
+  bool isEnglish() => locale == const Locale('en');
 
   //static const String _path = 'assets/lang/';
   // function to load the strings of the current local lang
@@ -76,6 +76,6 @@ class _AppLocalizationsDelegate
 // solid pren number two open-cloesd open for extension not for modefiction
 extension TranslateString on String {
   String tr(BuildContext context) {
-    return AppLocalizations.of(context)!.translate(this);
+    return AppLocalizations.of(context).translate(this);
   }
 }

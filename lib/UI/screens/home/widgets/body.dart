@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tasks/config/locale/app_locale.dart';
-import 'package:tasks/utils/app_strings.dart';
 import '../../../widgets/task_widget.dart';
 
 import '../../../../data/model/Task.dart';

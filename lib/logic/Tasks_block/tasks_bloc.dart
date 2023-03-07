@@ -7,7 +7,7 @@ import '../bloc_export.dart';
 part 'tasks_event.dart';
 part 'tasks_state.dart';
 
-class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
+class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
   TasksBloc() : super(const TasksState()) {
     on<AddTask>(_onAddTask);
     //   on<SearchOnTasksList>(_onSearshing);
