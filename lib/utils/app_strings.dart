@@ -5,6 +5,7 @@ class AssetsName {
 }
 
 class AppStrings {
+  static const hiderInHome = 'What is next ?';
   static const titleOfSplash = 'My Tasks';
   static const hiderTitleOneONSplash = 'Good                     ';
   static const hiderTitleTwoOnSplash = '          Consitancy';

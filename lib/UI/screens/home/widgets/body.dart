@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'task_widget.dart';
+import 'package:tasks/config/locale/app_locale.dart';
+import 'package:tasks/utils/app_strings.dart';
+import '../../../widgets/task_widget.dart';
 
-import '../../data/model/Task.dart';
-import '../../logic/bloc_export.dart';
+import '../../../../data/model/Task.dart';
+import '../../../../logic/bloc_export.dart';
 
 // ignore: must_be_immutable
 class BodyList extends StatelessWidget {
@@ -26,10 +28,10 @@ class BodyList extends StatelessWidget {
               children: [
                 Container(
                     margin:
-                        const EdgeInsets.only(right: 100, top: 20, bottom: 30),
-                    child: const Text(
-                      'What is new ?',
-                      style: TextStyle(
+                        const EdgeInsets.only(right: 120, top: 20, bottom: 30),
+                    child: Text(
+                      'whatisnew'.tr(context),
+                      style: const TextStyle(
                         fontSize: 30,
                       ),
                     )),

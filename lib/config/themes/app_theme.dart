@@ -10,7 +10,7 @@ class AppThemes {
   static Color contBackColor = const Color(0xffFF4444);
   static Color floatingColor = const Color(0xffFF4444);
   static Color iconColor = const Color(0xffFF0000);
-  static Color taskWidgetColor = HexColor('#FF4444');
+  static Color taskWidgetColor = const Color(0xffFF4444);
   static Color taskWidgetDarkColor = const Color(0xFF928484);
   static Color bottomNavColor = Colors.white;
   static Color bottomIconColor = Colors.black;

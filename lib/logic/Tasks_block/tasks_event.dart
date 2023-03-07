@@ -2,28 +2,22 @@ part of 'tasks_bloc.dart';
 
 abstract class TasksEvent extends Equatable {
   const TasksEvent();
-
   @override
   List<Object> get props => [];
 }
 
-class AddingTask extends TasksEvent {
+class AddTask extends TasksEvent {
   final Task task;
-
-  const AddingTask({
-    required this.task,
-  });
+  const AddTask({required this.task});
 
   @override
   List<Object> get props => [task];
 }
 
-class CompleteingTasks extends TasksEvent {
+class CompleteTasks extends TasksEvent {
   final Task task;
 
-  const CompleteingTasks({
-    required this.task,
-  });
+  const CompleteTasks({required this.task});
 
   @override
   List<Object> get props => [task];
@@ -32,19 +26,16 @@ class CompleteingTasks extends TasksEvent {
 class DeleteingTask extends TasksEvent {
   final Task task;
 
-  const DeleteingTask({
-    required this.task,
-  });
+  const DeleteingTask({required this.task});
 
   @override
   List<Object> get props => [task];
 }
 
-class ShowingTask extends TasksEvent {
+class SearchOnTasksList extends TasksEvent {
   final List<Task> allLoadedTasks;
-  const ShowingTask({
-    required this.allLoadedTasks,
-  });
+  final Task task;
+  const SearchOnTasksList(this.task, {required this.allLoadedTasks});
 
   @override
   List<Object> get props => [allLoadedTasks];
