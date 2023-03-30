@@ -1,19 +1,43 @@
 # tasks
 
-A new Flutter project.
+# Flutter Todo App
 
+A simple Flutter todo app built with clean architecture, BLoC pattern, change theme, and Flutter localization.
 
+## Features
+
+- Add new todos
+- Edit existing todos
+- Delete todos
+- Mark todos as complete/incomplete
+- Change app theme (light/dark)
+- Support for multiple languages using Flutter localization
+
+## Screenshots
+
+[TODO: Insert screenshots here]
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter SDK installed on your local machine
+- Android emulator or iOS simulator
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-![image](https://user-images.githubusercontent.com/81270359/219795938-f17289a0-2266-4506-b15b-5f68dc182ec4.png)
+## Built With
+
+- [Flutter](https://flutter.dev/) - Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
+- [BLoC pattern](https://bloclibrary.dev/) - Business Logic Component pattern for state management.
+- [Flutter localization](https://flutter.dev/docs/development/accessibility-and-localization/internationalization) - Flutter's built-in support for localization.
+- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) - Separation of concerns for code maintainability.
+
+## Authors
+
+- [Your Name](https://github.com/your-username) - Initial work
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
